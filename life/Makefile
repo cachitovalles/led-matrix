@@ -20,13 +20,13 @@ $(RGB_LIBRARY): FORCE
 demo : demo-main.o $(RGB_LIBRARY)
 	$(CXX) $< -o $@ $(LDFLAGS)
 
-minimal-example : minimal-example.o
-input-example : input-example.o
-text-example: text-example.o
-scrolling-text-example : scrolling-text-example.o
-clock : clock.o
-ledcat : ledcat.o
-pixel-mover : pixel-mover.o
+#minimal-example : minimal-example.o
+#input-example : input-example.o
+#text-example: text-example.o
+#scrolling-text-example : scrolling-text-example.o
+#clock : clock.o
+#ledcat : ledcat.o
+#pixel-mover : pixel-mover.o
 
 # All the binaries that have the same name as the object file.q
 % : %.o $(RGB_LIBRARY)

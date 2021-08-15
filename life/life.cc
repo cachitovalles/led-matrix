@@ -223,7 +223,7 @@ int main(int argc, char *argv[]) {
       break;
 
     default: /* '?' */
-      //return usage(argv[0]);
+      return 0;
     }
   }
 

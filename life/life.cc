@@ -28,6 +28,8 @@ static void InterruptHandler(int signo) {
   interrupt_received = true;
 }
 
+//Automata
+
 class Life {
 protected:
   Life(Canvas *canvas) : canvas_(canvas) {}
@@ -192,3 +194,67 @@ private:
   int height_;
   bool torus_;
 };
+
+//Opciones
+int main(int argc, char *argv[]) {
+
+  int scroll_ms = 30;
+
+  RGBMatrix::Options matrix_options;
+  rgb_matrix::RuntimeOptions runtime_opt;
+
+  // These are the defaults when no command-line flags are given.
+  matrix_options.rows = 32;
+  matrix_options.chain_length = 1;
+  matrix_options.parallel = 1;
+
+  // First things first: extract the command line flags that contain
+  // relevant matrix options.
+  if (!ParseOptionsFromFlags(&argc, &argv, &matrix_options, &runtime_opt)) {
+    return usage(argv[0]);
+  }
+
+  int opt;
+  while ((opt = getopt(argc, argv, "dD:r:P:c:p:b:m:LR:")) != -1) {
+    switch (opt) {
+
+    case 'm':
+      scroll_ms = atoi(optarg);
+      break;
+
+    default: /* '?' */
+      return usage(argv[0]);
+    }
+  }
+
+  RGBMatrix *matrix = RGBMatrix::CreateFromOptions(matrix_options, runtime_opt);
+  if (matrix == NULL)
+    return 1;
+
+  printf("Size: %dx%d. Hardware gpio mapping: %s\n",
+         matrix->width(), matrix->height(), matrix_options.hardware_mapping);
+
+  Canvas *canvas = matrix;
+
+  // The **DemoRunner->cambia a Life** objects are filling
+  // the matrix continuously.
+  Life *life = new GameLife(canvas, scroll_ms);
+  
+
+  // Set up an interrupt handler to be able to stop animations while they go
+  // on. Each demo tests for while (!interrupt_received) {},
+  // so they exit as soon as they get a signal.
+  signal(SIGTERM, InterruptHandler);
+  signal(SIGINT, InterruptHandler);
+
+  printf("Press <CTRL-C> to exit and reset LEDs\n");
+
+  // Now, run our particular demo; it will exit when it sees interrupt_received.
+  life->Run();
+
+  delete life;
+  delete canvas;
+
+  printf("Received CTRL-C. Exiting.\n");
+  return 0;
+}

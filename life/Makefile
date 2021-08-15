@@ -18,7 +18,7 @@ $(RGB_LIBRARY): FORCE
 	$(MAKE) -C $(RGB_LIBDIR)
 
 life : life.o $(RGB_LIBRARY)
-	$(CXX) $< -o $@ $(LDFLAGS)
+	#$(CXX) $< -o $@ $(LDFLAGS)
 
 minimal-example : minimal-example.o
 #input-example : input-example.o

@@ -17,10 +17,10 @@ all : $(BINARIES)
 $(RGB_LIBRARY): FORCE
 	$(MAKE) -C $(RGB_LIBDIR)
 
-demo : demo-main.o $(RGB_LIBRARY)
+life : life.o $(RGB_LIBRARY)
 	$(CXX) $< -o $@ $(LDFLAGS)
 
-#minimal-example : minimal-example.o
+minimal-example : minimal-example.o
 #input-example : input-example.o
 #text-example: text-example.o
 #scrolling-text-example : scrolling-text-example.o

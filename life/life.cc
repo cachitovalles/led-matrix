@@ -204,7 +204,7 @@ int main(int argc, char *argv[]) {
   rgb_matrix::RuntimeOptions runtime_opt;
 
   // These are the defaults when no command-line flags are given.
-  matrix_options.rows = 32;
+  matrix_options.rows = 16;
   matrix_options.chain_length = 1;
   matrix_options.parallel = 1;
 

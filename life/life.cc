@@ -28,23 +28,23 @@ static void InterruptHandler(int signo) {
   interrupt_received = true;
 }
 
-class DemoRunner {
+class Life {
 protected:
-  DemoRunner(Canvas *canvas) : canvas_(canvas) {}
+  Life(Canvas *canvas) : canvas_(canvas) {}
   inline Canvas *canvas() { return canvas_; }
 
 public:
-  virtual ~DemoRunner() {}
+  virtual ~Life() {}
   virtual void Run() = 0;
 
 private:
   Canvas *const canvas_;
 };
 
-class GameLife : public DemoRunner {
+class GameLife : public Life {
 public:
   GameLife(Canvas *m, int delay_ms=500, bool torus=true)
-    : DemoRunner(m), delay_ms_(delay_ms), torus_(torus) {
+    : Life(m), delay_ms_(delay_ms), torus_(torus) {
     width_ = canvas()->width();
     height_ = canvas()->height();
 

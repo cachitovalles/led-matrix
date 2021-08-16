@@ -88,6 +88,7 @@ public:
   }
 
   ~GameLife() {
+    int count = 0;
     for (int x=0; x<width_; ++x) {
       delete [] GameState_[x];
     }
@@ -153,9 +154,9 @@ private:
     }
     return num;
   }
-
+  
   void updateValues() {
-        int count = count + 1; 
+        count = (count + 1); 
     // Copy GameState to newGameState
     for (int x=0; x<width_; ++x) {
       for (int y=0; y<height_; ++y) {
@@ -177,6 +178,7 @@ private:
             newGameState_[x][y] = 1;
         }
         if (count == 10){
+            count = 0;
             newGameState_[x/2+21][y/2+21] = 1;
             newGameState_[x/2+22][y/2+22] = 1;
             newGameState_[x/2+22][y/2+23] = 1;

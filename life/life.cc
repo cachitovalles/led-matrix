@@ -176,8 +176,7 @@ private:
           if (num == 3)
             newGameState_[x][y] = 1;
         }
-        if{
-            if (count == 10)
+        if (count == 10){
             newGameState_[x/2+21][y/2+21] = 1;
             newGameState_[x/2+22][y/2+22] = 1;
             newGameState_[x/2+22][y/2+23] = 1;
@@ -186,7 +185,7 @@ private:
         }
         
       }
-      print(count)
+      Console.Write(count);
     }
     // copy newGameState to GameState
     for (int x=0; x<width_; ++x) {
@@ -218,7 +217,7 @@ int main(int argc, char *argv[]) {
 
   // These are the defaults when no command-line flags are given.
   matrix_options.rows = 16;
-  matrix_options.chain_length = 3;
+  matrix_options.chain_length = 2;
   matrix_options.parallel = 1;
 
   // First things first: extract the command line flags that contain

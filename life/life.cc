@@ -115,7 +115,6 @@ public:
     }
   }
 
-  int count = count + 1; 
 
 private:
   int numAliveNeighbours(int x, int y) {
@@ -156,6 +155,7 @@ private:
   }
 
   void updateValues() {
+        int count = count + 1; 
     // Copy GameState to newGameState
     for (int x=0; x<width_; ++x) {
       for (int y=0; y<height_; ++y) {
@@ -186,6 +186,7 @@ private:
         }
         
       }
+      print(count)
     }
     // copy newGameState to GameState
     for (int x=0; x<width_; ++x) {
@@ -194,6 +195,7 @@ private:
       }
     }
   }
+
 
   int** GameState_;
   int** newGameState_;

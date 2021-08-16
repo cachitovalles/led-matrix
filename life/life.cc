@@ -241,7 +241,7 @@ private:
 int main(int argc, char *argv[])
 {
 
-    int scroll_ms = 300;
+    int scroll_ms = rand () % 60 + 30;
 
     RGBMatrix::Options matrix_options;
     rgb_matrix::RuntimeOptions runtime_opt;

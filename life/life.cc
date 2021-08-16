@@ -184,8 +184,7 @@ private:
             newGameState_[x/2+20][y/2+23] = 1;
         }
         
-      }
-      printf(count);
+      }      
     }
     // copy newGameState to GameState
     for (int x=0; x<width_; ++x) {

@@ -124,9 +124,9 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                     if (GameState_[x][y])
-                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_
+                        canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_
                     else
-                        canvas()->SetPixel(x, y, r_, g_, b_); //esto era 0, 0, 0
+                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0
                 }
             }
             usleep(delay_ms_ * 1000); // ms

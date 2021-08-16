@@ -45,26 +45,26 @@ private:
 
 class GameLife : public Life {
 public:
-  GameLife(Canvas *m, int delay_ms=500, bool torus=true)
+  GameLife(Canvas *m, int delay_ms=1000, bool torus=true)
     : Life(m), delay_ms_(delay_ms), torus_(torus) {
     width_ = canvas()->width();
     height_ = canvas()->height();
 
     // Allocate memory
-    values_ = new int*[width_];
+    GameState_ = new int*[width_];
     for (int x=0; x<width_; ++x) {
-      values_[x] = new int[height_];
+      GameState_[x] = new int[height_];
     }
-    newValues_ = new int*[width_];
+    newGameState_ = new int*[width_];
     for (int x=0; x<width_; ++x) {
-      newValues_[x] = new int[height_];
+      newGameState_[x] = new int[height_];
     }
 
-    // Init values randomly
+    // Init GameState randomly
     srand(time(NULL));
     for (int x=0; x<width_; ++x) {
       for (int y=0; y<height_; ++y) {
-        values_[x][y]=rand()%2;
+        GameState_[x][y]=rand()%2;
       }
     }
     r_ = rand()%255;
@@ -89,13 +89,13 @@ public:
 
   ~GameLife() {
     for (int x=0; x<width_; ++x) {
-      delete [] values_[x];
+      delete [] GameState_[x];
     }
-    delete [] values_;
+    delete [] GameState_;
     for (int x=0; x<width_; ++x) {
-      delete [] newValues_[x];
+      delete [] newGameState_[x];
     }
-    delete [] newValues_;
+    delete [] newGameState_;
   }
 
   void Run() override {
@@ -105,7 +105,7 @@ public:
 
       for (int x=0; x<width_; ++x) {
         for (int y=0; y<height_; ++y) {
-          if (values_[x][y])
+          if (GameState_[x][y])
             canvas()->SetPixel(x, y, r_, g_, b_);
           else
             canvas()->SetPixel(x, y, 0, 0, 0);
@@ -115,77 +115,88 @@ public:
     }
   }
 
+  int count = count + 1; 
+
 private:
   int numAliveNeighbours(int x, int y) {
     int num=0;
     if (torus_) {
       // Edges are connected (torus)
-      num += values_[(x-1+width_)%width_][(y-1+height_)%height_];
-      num += values_[(x-1+width_)%width_][y                    ];
-      num += values_[(x-1+width_)%width_][(y+1        )%height_];
-      num += values_[(x+1       )%width_][(y-1+height_)%height_];
-      num += values_[(x+1       )%width_][y                    ];
-      num += values_[(x+1       )%width_][(y+1        )%height_];
-      num += values_[x                  ][(y-1+height_)%height_];
-      num += values_[x                  ][(y+1        )%height_];
+      num += GameState_[(x-1+width_)%width_][(y-1+height_)%height_];
+      num += GameState_[(x-1+width_)%width_][y                    ];
+      num += GameState_[(x-1+width_)%width_][(y+1        )%height_];
+      num += GameState_[(x+1       )%width_][(y-1+height_)%height_];
+      num += GameState_[(x+1       )%width_][y                    ];
+      num += GameState_[(x+1       )%width_][(y+1        )%height_];
+      num += GameState_[x                  ][(y-1+height_)%height_];
+      num += GameState_[x                  ][(y+1        )%height_];
     }
     else {
       // Edges are not connected (no torus)
       if (x>0) {
         if (y>0)
-          num += values_[x-1][y-1];
+          num += GameState_[x-1][y-1];
         if (y<height_-1)
-          num += values_[x-1][y+1];
-        num += values_[x-1][y];
+          num += GameState_[x-1][y+1];
+        num += GameState_[x-1][y];
       }
       if (x<width_-1) {
         if (y>0)
-          num += values_[x+1][y-1];
+          num += GameState_[x+1][y-1];
         if (y<31)
-          num += values_[x+1][y+1];
-        num += values_[x+1][y];
+          num += GameState_[x+1][y+1];
+        num += GameState_[x+1][y];
       }
       if (y>0)
-        num += values_[x][y-1];
+        num += GameState_[x][y-1];
       if (y<height_-1)
-        num += values_[x][y+1];
+        num += GameState_[x][y+1];
     }
     return num;
   }
 
   void updateValues() {
-    // Copy values to newValues
+    // Copy GameState to newGameState
     for (int x=0; x<width_; ++x) {
       for (int y=0; y<height_; ++y) {
-        newValues_[x][y] = values_[x][y];
+        newGameState_[x][y] = GameState_[x][y];
       }
     }
-    // update newValues based on values
+    // update newGameState based on GameState
     for (int x=0; x<width_; ++x) {
       for (int y=0; y<height_; ++y) {
         int num = numAliveNeighbours(x,y);
-        if (values_[x][y]) {
+        if (GameState_[x][y]) {
           // cell is alive
           if (num < 2 || num > 3)
-            newValues_[x][y] = 0;
+            newGameState_[x][y] = 0;
         }
         else {
           // cell is dead
           if (num == 3)
-            newValues_[x][y] = 1;
+            newGameState_[x][y] = 1;
         }
+        else {
+            if (count == 10)
+            newGameState_[x/2+21][y/2+21] = 1;
+            newGameState_[x/2+22][y/2+22] = 1;
+            newGameState_[x/2+22][y/2+23] = 1;
+            newGameState_[x/2+21][y/2+23] = 1;
+            newGameState_[x/2+20][y/2+23] = 1;
+        }
+        
       }
     }
-    // copy newValues to values
+    // copy newGameState to GameState
     for (int x=0; x<width_; ++x) {
       for (int y=0; y<height_; ++y) {
-        values_[x][y] = newValues_[x][y];
+        GameState_[x][y] = newGameState_[x][y];
       }
     }
   }
 
-  int** values_;
-  int** newValues_;
+  int** GameState_;
+  int** newGameState_;
   int delay_ms_;
   int r_;
   int g_;
@@ -205,7 +216,7 @@ int main(int argc, char *argv[]) {
 
   // These are the defaults when no command-line flags are given.
   matrix_options.rows = 16;
-  matrix_options.chain_length = 1;
+  matrix_options.chain_length = 3;
   matrix_options.parallel = 1;
 
   // First things first: extract the command line flags that contain

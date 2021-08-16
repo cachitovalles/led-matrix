@@ -176,7 +176,7 @@ private:
           if (num == 3)
             newGameState_[x][y] = 1;
         }
-        else if{
+        else{
             if (count == 10)
             newGameState_[x/2+21][y/2+21] = 1;
             newGameState_[x/2+22][y/2+22] = 1;

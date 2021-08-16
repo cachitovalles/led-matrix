@@ -185,7 +185,7 @@ private:
         }
         
       }
-      Console.Write(count);
+      printf(count);
     }
     // copy newGameState to GameState
     for (int x=0; x<width_; ++x) {

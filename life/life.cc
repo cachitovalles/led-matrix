@@ -56,19 +56,15 @@ public:
         height_ = canvas()->height();
         // Allocate memory
         GameState_ = new int *[width_];
-        GameStateB_ = new int *[width_]; //new
         for (int x = 0; x < width_; ++x)
         {
             GameState_[x] = new int[height_];
-            GameStateB_[x] = new int[height_];
         }
         newGameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
             newGameState_[x] = new int[height_];
-            newGameStateB_[x] = new int[height_];
         }
-        
 
         // Init GameState randomly
         srand(time(NULL));
@@ -77,8 +73,6 @@ public:
             for (int y = 0; y < height_; ++y)
             {
                 GameState_[x][y] = rand() % 2;
-                GameStateB_[x][y] = rand() % 3;
-
             }
         }
         
@@ -113,19 +107,13 @@ public:
         for (int x = 0; x < width_; ++x)
         {
             delete[] GameState_[x];
-            delete[] GameStateB_[x];
         }
         delete[] GameState_;
-        delete[] GameStateB_;
         for (int x = 0; x < width_; ++x)
         {
             delete[] newGameState_[x];
-            delete[] newGameStateB_[x];
         }
         delete[] newGameState_;
-        delete[] newGameStateB_;
-        //desde aqui B
-      
     }
 
     void Run() override
@@ -142,12 +130,12 @@ public:
                    
                     if (GameState_[x][y])
                         canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
-
-                    if (GameStateB_[x][y])
-                        canvas()->SetPixel(x, y, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                        canvas()->SetPixel(x-1, y-2, 250, 0, 0);
+                        canvas()->SetPixel(x-1, y-1, 250, 0, 0);
+                        canvas()->SetPixel(x-1, y, 250, 0, 0);
               
                     else
-                        canvas()->SetPixel(x, y, 10, 10, 20); //esto era 0, 0, 0 MUERTAS
+                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
                   
                 }
             }
@@ -159,7 +147,6 @@ private:
     int numAliveNeighbours(int x, int y)
     {
         int num = 0;
-        int numb = 0;
         if (torus_)
         {
             // Edges are connected (torus)
@@ -171,15 +158,6 @@ private:
             num += GameState_[(x + 1) % width_][(y + 1) % height_];
             num += GameState_[x][(y - 1 + height_) % height_];
             num += GameState_[x][(y + 1) % height_];
-
-            numb += GameStateB_[(x - 1 + width_) % width_][(y - 1 + height_) % height_];
-            numb += GameStateB_[(x - 1 + width_) % width_][y];
-            numb += GameStateB_[(x - 1 + width_) % width_][(y + 1) % height_];
-            numb += GameStateB_[(x + 1) % width_][(y - 1 + height_) % height_];
-            numb += GameStateB_[(x + 1) % width_][y];
-            numb += GameStateB_[(x + 1) % width_][(y + 1) % height_];
-            numb += GameStateB_[x][(y - 1 + height_) % height_];
-            numb += GameStateB_[x][(y + 1) % height_];
         }
         else
         {
@@ -188,33 +166,24 @@ private:
             {
                 if (y > 0)
                     num += GameState_[x - 1][y - 1];
-                    numb += GameStateB_[x - 1][y - 1];
                 if (y < height_ - 1)
                     num += GameState_[x - 1][y + 1];
-                    numb += GameStateB_[x - 1][y + 1];
                 num += GameState_[x - 1][y];
-                numb += GameStateB_[x - 1][y];
             }
             if (x < width_ - 1)
             {
                 if (y > 0)
                     num += GameState_[x + 1][y - 1];
-                    numb += GameStateB_[x + 1][y - 1];
                 if (y < 31)
                     num += GameState_[x + 1][y + 1];
-                    numb += GameStateB_[x + 1][y + 1];
                 num += GameState_[x + 1][y];
-                numb += GameStateB_[x + 1][y];
             }
             if (y > 0)
                 num += GameState_[x][y - 1];
-                numb += GameStateB_[x][y - 1];
             if (y < height_ - 1)
                 num += GameState_[x][y + 1];
-                numb += GameStateB_[x][y + 1];
         }
         return num;
-        return numb;
     }
 
     void updateValues()
@@ -226,7 +195,6 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 newGameState_[x][y] = GameState_[x][y];
-                newGameStateB_[x][y] = GameStateB_[x][y];
             }
         }
         // update newGameState based on GameState
@@ -240,14 +208,12 @@ private:
                     // cell is alive
                     if (num < 2 || num > 3)
                         newGameState_[x][y] = 0;
-                        
                 }
                 else
                 {
                     // cell is dead
                     if (num == 3)
                         newGameState_[x][y] = 1;
-                        
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
@@ -260,53 +226,18 @@ private:
                 }
             }
         }
-
-        // update newGameState based on GameState
-        for (int x = 0; x < width_; ++x)
-        {
-            for (int y = 0; y < height_; ++y)
-            {
-                int numb = numAliveNeighbours(x, y);
-                if (GameState_[x][y])
-                {
-                    // cell is alive
-                    if (numb < 2 || numb > 3)
-                        newGameStateB_[x][y] = 0;
-                        
-                }
-                else
-                {
-                    // cell is dead
-                    if (numb == 3)
-                        newGameStateB_[x][y] = 1;
-                        
-                }
-                if (count == 15)  // Nacen cada 10 Iteracciones
-                {
-                    count = 0;
-                    newGameStateB_[x / 2 + 21][y / 2 + 21] = 1;
-                    newGameStateB_[x / 2 + 22][y / 2 + 22] = 1;
-                    newGameStateB_[x / 2 + 22][y / 2 + 23] = 1;
-                    newGameStateB_[x / 2 + 21][y / 2 + 23] = 1;
-                    newGameStateB_[x / 2 + 20][y / 2 + 23] = 1;
-                }
-            }
-        }
         // copy newGameState to GameState
         for (int x = 0; x < width_; ++x)
         {
             for (int y = 0; y < height_; ++y)
             {
                 GameState_[x][y] = newGameState_[x][y];
-                GameStateB_[x][y] = newGameStateB_[x][y];
             }
         }
     }
 
     int **GameState_;
     int **newGameState_;
-    int **GameStateB_;
-    int **newGameStateB_;
     int delay_ms_;
     int r_;
     int g_;

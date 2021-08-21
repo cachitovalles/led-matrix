@@ -49,7 +49,7 @@ class GameLife : public Life
 {
     int count = 0;  //Contador
 public:
-    GameLife(Canvas *m, int delay_ms = 500, bool torus = true)  //opciones   delay_ms era 1000
+    GameLife(Canvas *m, int delay_ms = 700, bool torus = true)  //opciones   delay_ms era 1000
         : Life(m), delay_ms_(delay_ms), torus_(torus)
     {
         width_ = canvas()->width();
@@ -129,11 +129,11 @@ public:
                 {
                    
                     if (GameState_[x][y])
-                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_
-                    if (GameState_[rand()%x][rand()%y])
-                        canvas()->SetPixel(x, y, 200, 10, 60); // esto era r_, g_, b_
+                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
+                    if (GameState_[x][y])
+                        canvas()->SetPixel(x+1, y+2, 200, 0, 0); // esto era r_, g_, b_ VIVAS
                     else
-                        canvas()->SetPixel(x, y, r_, b_, g_); //esto era 0, 0, 0
+                        canvas()->SetPixel(x, y, r_, b_, g_); //esto era 0, 0, 0 MUERTAS
                   
                 }
             }

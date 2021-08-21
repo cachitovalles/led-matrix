@@ -129,20 +129,14 @@ public:
                 {
                    
                     if (GameState_[x][y])
-                    {
                        canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x+1, y, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x+2, y, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x, y+1, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x, y+2, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x+1, y+1, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x+1, y+2, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x+2, y+1, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x+2, y+2, 250, b_, g_); // esto era r_, g_, b_ VIVAS
-                    }
                     else
-                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
-                  
+                       canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
+                       
+                    if (GameState_[x+1][y+1])
+                       canvas()->SetPixel(x+1, y+1, 250, b_, g_); // esto era r_, g_, b_ VIVAS
+
+
                 }
             }
             usleep(delay_ms_ * 1000); // ms

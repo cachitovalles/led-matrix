@@ -159,6 +159,7 @@ private:
     int numAliveNeighbours(int x, int y)
     {
         int num = 0;
+        int numb = 0;
         if (torus_)
         {
             // Edges are connected (torus)
@@ -171,14 +172,14 @@ private:
             num += GameState_[x][(y - 1 + height_) % height_];
             num += GameState_[x][(y + 1) % height_];
 
-            num += GameStateB_[(x - 1 + width_) % width_][(y - 1 + height_) % height_];
-            num += GameStateB_[(x - 1 + width_) % width_][y];
-            num += GameStateB_[(x - 1 + width_) % width_][(y + 1) % height_];
-            num += GameStateB_[(x + 1) % width_][(y - 1 + height_) % height_];
-            num += GameStateB_[(x + 1) % width_][y];
-            num += GameStateB_[(x + 1) % width_][(y + 1) % height_];
-            num += GameStateB_[x][(y - 1 + height_) % height_];
-            num += GameStateB_[x][(y + 1) % height_];
+            numb += GameStateB_[(x - 1 + width_) % width_][(y - 1 + height_) % height_];
+            numb += GameStateB_[(x - 1 + width_) % width_][y];
+            numb += GameStateB_[(x - 1 + width_) % width_][(y + 1) % height_];
+            numb += GameStateB_[(x + 1) % width_][(y - 1 + height_) % height_];
+            numb += GameStateB_[(x + 1) % width_][y];
+            numb += GameStateB_[(x + 1) % width_][(y + 1) % height_];
+            numb += GameStateB_[x][(y - 1 + height_) % height_];
+            numb += GameStateB_[x][(y + 1) % height_];
         }
         else
         {
@@ -187,32 +188,33 @@ private:
             {
                 if (y > 0)
                     num += GameState_[x - 1][y - 1];
-                    num += GameStateB_[x - 1][y - 1];
+                    numb += GameStateB_[x - 1][y - 1];
                 if (y < height_ - 1)
                     num += GameState_[x - 1][y + 1];
-                    num += GameStateB_[x - 1][y + 1];
+                    numb += GameStateB_[x - 1][y + 1];
                 num += GameState_[x - 1][y];
-                num += GameStateB_[x - 1][y];
+                numb += GameStateB_[x - 1][y];
             }
             if (x < width_ - 1)
             {
                 if (y > 0)
                     num += GameState_[x + 1][y - 1];
-                    num += GameStateB_[x + 1][y - 1];
+                    numb += GameStateB_[x + 1][y - 1];
                 if (y < 31)
                     num += GameState_[x + 1][y + 1];
-                    num += GameStateB_[x + 1][y + 1];
+                    numb += GameStateB_[x + 1][y + 1];
                 num += GameState_[x + 1][y];
-                num += GameStateB_[x + 1][y];
+                numb += GameStateB_[x + 1][y];
             }
             if (y > 0)
                 num += GameState_[x][y - 1];
-                num += GameStateB_[x][y - 1];
+                numb += GameStateB_[x][y - 1];
             if (y < height_ - 1)
                 num += GameState_[x][y + 1];
-                num += GameStateB_[x][y + 1];
+                numb += GameStateB_[x][y + 1];
         }
         return num;
+        return numb;
     }
 
     void updateValues()
@@ -238,14 +240,14 @@ private:
                     // cell is alive
                     if (num < 2 || num > 3)
                         newGameState_[x][y] = 0;
-                        newGameStateB_[x][y] = 0;
+                        
                 }
                 else
                 {
                     // cell is dead
                     if (num == 3)
                         newGameState_[x][y] = 1;
-                        newGameStateB_[x][y] = 1;
+                        
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
@@ -255,6 +257,38 @@ private:
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
+                }
+            }
+        }
+
+        // update newGameState based on GameState
+        for (int x = 0; x < width_; ++x)
+        {
+            for (int y = 0; y < height_; ++y)
+            {
+                int numb = numAliveNeighbours(x, y);
+                if (GameState_[x][y])
+                {
+                    // cell is alive
+                    if (numb < 2 || numb > 3)
+                        newGameStateB_[x][y] = 0;
+                        
+                }
+                else
+                {
+                    // cell is dead
+                    if (numb == 3)
+                        newGameStateB_[x][y] = 1;
+                        
+                }
+                if (count == 15)  // Nacen cada 10 Iteracciones
+                {
+                    count = 0;
+                    newGameStateB_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameStateB_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameStateB_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameStateB_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameStateB_[x / 2 + 20][y / 2 + 23] = 1;
                 }
             }
         }

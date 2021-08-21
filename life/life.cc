@@ -271,6 +271,8 @@ private:
 
     int **GameState_;
     int **newGameState_;
+    int **GameStateB_;
+    int **newGameStateB_;
     int delay_ms_;
     int r_;
     int g_;

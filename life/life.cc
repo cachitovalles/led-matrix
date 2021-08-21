@@ -132,7 +132,7 @@ public:
                         canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
               
                     else
-                        canvas()->SetPixel(x, y, 40, 20, 80); //esto era 0, 0, 0 MUERTAS
+                        canvas()->SetPixel(x, y, 10, 10, 20); //esto era 0, 0, 0 MUERTAS
                   
                 }
             }

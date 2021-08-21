@@ -118,7 +118,7 @@ public:
 
     void Run() override
     {
-        while (!interrupt_received)
+        while (!interrupt_received)  //color
         {
 
             updateValues();
@@ -128,7 +128,7 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                     if (GameState_[x][y])
-                        canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_
+                        canvas()->SetPixel(x, y, r_-rand()%10, b_-rand()%10, g_-rand()%10); // esto era r_, g_, b_
                     else
                         canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0
                 }
@@ -228,29 +228,6 @@ private:
                 GameState_[x][y] = newGameState_[x][y];
             }
         }
-        
-        uint32_t continuum = 0;
-    while (!interrupt_received) {
-      usleep(5 * 1000);
-      continuum += 1;
-      continuum %= 3 * 255;
-      int r_ = 0, g_ = 0, b_ = 0;
-      if (continuum <= 255) {
-        int c = continuum;
-        b_ = 255 - c;
-        r_ = c;
-      } else if (continuum > 255 && continuum <= 511) {
-        int c = continuum - 256;
-        r_ = 255 - c;
-        g_ = c;
-      } else {
-        int c = continuum - 512;
-        g_ = 255 - c;
-        b_ = c;
-      }
-      off_screen_canvas_->Fill(r_, g_, b_);
-      off_screen_canvas_ = matrix_->SwapOnVSync(off_screen_canvas_);
-    }
     }
 
     int **GameState_;

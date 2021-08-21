@@ -254,6 +254,8 @@ int main(int argc, char *argv[])
     matrix_options.rows = 16;
     matrix_options.chain_length = 2;
     matrix_options.parallel = 1;
+    matrix_options.*pixel_mapper_config = "V-mapper";
+    
 
     // First things first: extract the command line flags that contain
     // relevant matrix options.

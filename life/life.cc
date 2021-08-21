@@ -98,18 +98,7 @@ public:
         }*/
         
 
-        if(r_ > 0 && b_ == 0){
-            r_--;
-            g_++;
-            }
-        if(g_ > 0 && r_ == 0){
-            g_--;
-            b_++;
-            }
-        if(b_ > 0 && g_ == 0){
-            r_++;
-            b_--;
-             }
+        
     }
 
     ~GameLife()
@@ -229,6 +218,18 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
+                if(r_ > 0 && b_ == 0){
+                    r_--;
+                     g_++;
+                     }
+        if(g_ > 0 && r_ == 0){
+            g_--;
+            b_++;
+            }
+        if(b_ > 0 && g_ == 0){
+            r_++;
+            b_--;
+             }
             }
         }
         // copy newGameState to GameState

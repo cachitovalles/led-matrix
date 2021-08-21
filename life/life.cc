@@ -177,7 +177,7 @@ public:
                 for (int b = 0; b < height_; ++b)///
                 {
                    
-                    if (GameState_[a][b])///
+                    if (GameStateB_[a][b])///
                         canvas()->SetPixel(a, b, r_, b_, g_); // esto era r_, g_, b_ VIVAS ////
               
                     else

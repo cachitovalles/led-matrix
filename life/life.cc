@@ -56,15 +56,19 @@ public:
         height_ = canvas()->height();
         // Allocate memory
         GameState_ = new int *[width_];
+        GameStateB_ = new int *[width_]; //new
         for (int x = 0; x < width_; ++x)
         {
             GameState_[x] = new int[height_];
+            GameStateB_[x] = new int[height_];
         }
         newGameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
             newGameState_[x] = new int[height_];
+            newGameStateB_[x] = new int[height_];
         }
+        
 
         // Init GameState randomly
         srand(time(NULL));
@@ -73,6 +77,8 @@ public:
             for (int y = 0; y < height_; ++y)
             {
                 GameState_[x][y] = rand() % 2;
+                GameStateB_[x][y] = rand() % 3;
+
             }
         }
         
@@ -107,13 +113,19 @@ public:
         for (int x = 0; x < width_; ++x)
         {
             delete[] GameState_[x];
+            delete[] GameStateB_[x];
         }
         delete[] GameState_;
+        delete[] GameStateB_;
         for (int x = 0; x < width_; ++x)
         {
             delete[] newGameState_[x];
+            delete[] newGameStateB_[x];
         }
         delete[] newGameState_;
+        delete[] newGameStateB_;
+        //desde aqui B
+      
     }
 
     void Run() override
@@ -130,6 +142,9 @@ public:
                    
                     if (GameState_[x][y])
                         canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
+
+                    if (GameStateB_[x][y])
+                        canvas()->SetPixel(x, y, 250, 0, 0); // esto era r_, g_, b_ VIVAS
               
                     else
                         canvas()->SetPixel(x, y, 10, 10, 20); //esto era 0, 0, 0 MUERTAS
@@ -155,6 +170,15 @@ private:
             num += GameState_[(x + 1) % width_][(y + 1) % height_];
             num += GameState_[x][(y - 1 + height_) % height_];
             num += GameState_[x][(y + 1) % height_];
+
+            num += GameStateB_[(x - 1 + width_) % width_][(y - 1 + height_) % height_];
+            num += GameStateB_[(x - 1 + width_) % width_][y];
+            num += GameStateB_[(x - 1 + width_) % width_][(y + 1) % height_];
+            num += GameStateB_[(x + 1) % width_][(y - 1 + height_) % height_];
+            num += GameStateB_[(x + 1) % width_][y];
+            num += GameStateB_[(x + 1) % width_][(y + 1) % height_];
+            num += GameStateB_[x][(y - 1 + height_) % height_];
+            num += GameStateB_[x][(y + 1) % height_];
         }
         else
         {
@@ -163,22 +187,30 @@ private:
             {
                 if (y > 0)
                     num += GameState_[x - 1][y - 1];
+                    num += GameStateB_[x - 1][y - 1];
                 if (y < height_ - 1)
                     num += GameState_[x - 1][y + 1];
+                    num += GameStateB_[x - 1][y + 1];
                 num += GameState_[x - 1][y];
+                num += GameStateB_[x - 1][y];
             }
             if (x < width_ - 1)
             {
                 if (y > 0)
                     num += GameState_[x + 1][y - 1];
+                    num += GameStateB_[x + 1][y - 1];
                 if (y < 31)
                     num += GameState_[x + 1][y + 1];
+                    num += GameStateB_[x + 1][y + 1];
                 num += GameState_[x + 1][y];
+                num += GameStateB_[x + 1][y];
             }
             if (y > 0)
                 num += GameState_[x][y - 1];
+                num += GameStateB_[x][y - 1];
             if (y < height_ - 1)
                 num += GameState_[x][y + 1];
+                num += GameStateB_[x][y + 1];
         }
         return num;
     }
@@ -192,6 +224,7 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 newGameState_[x][y] = GameState_[x][y];
+                newGameStateB_[x][y] = GameStateB_[x][y];
             }
         }
         // update newGameState based on GameState
@@ -205,12 +238,14 @@ private:
                     // cell is alive
                     if (num < 2 || num > 3)
                         newGameState_[x][y] = 0;
+                        newGameStateB_[x][y] = 0;
                 }
                 else
                 {
                     // cell is dead
                     if (num == 3)
                         newGameState_[x][y] = 1;
+                        newGameStateB_[x][y] = 1;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
@@ -229,6 +264,7 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 GameState_[x][y] = newGameState_[x][y];
+                GameStateB_[x][y] = newGameStateB_[x][y];
             }
         }
     }

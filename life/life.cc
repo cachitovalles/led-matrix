@@ -218,18 +218,6 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
-                if(r_ > 0 && b_ == 0){
-                    r_--;
-                     g_++;
-                     }
-        if(g_ > 0 && r_ == 0){
-            g_--;
-            b_++;
-            }
-        if(b_ > 0 && g_ == 0){
-            r_++;
-            b_--;
-             }
             }
         }
         // copy newGameState to GameState
@@ -240,6 +228,29 @@ private:
                 GameState_[x][y] = newGameState_[x][y];
             }
         }
+        
+        uint32_t continuum = 0;
+    while (!interrupt_received) {
+      usleep(5 * 1000);
+      continuum += 1;
+      continuum %= 3 * 255;
+      int r_ = 0, g_ = 0, b_ = 0;
+      if (continuum <= 255) {
+        int c = continuum;
+        b_ = 255 - c;
+        r_ = c;
+      } else if (continuum > 255 && continuum <= 511) {
+        int c = continuum - 256;
+        r_ = 255 - c;
+        g_ = c;
+      } else {
+        int c = continuum - 512;
+        g_ = 255 - c;
+        b_ = c;
+      }
+      off_screen_canvas_->Fill(r_, g_, b_);
+      off_screen_canvas_ = matrix_->SwapOnVSync(off_screen_canvas_);
+    }
     }
 
     int **GameState_;

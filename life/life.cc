@@ -47,9 +47,9 @@ private:
 
 class GameLife : public Life
 {
-    int count = 0;
+    int count = 0;  //Contador
 public:
-    GameLife(Canvas *m, int delay_ms = 1000, bool torus = true)
+    GameLife(Canvas *m, int delay_ms = 1000, bool torus = true)  //opciones
         : Life(m), delay_ms_(delay_ms), torus_(torus)
     {
         width_ = canvas()->width();
@@ -75,11 +75,12 @@ public:
                 GameState_[x][y] = rand() % 2;
             }
         }
+        
         r_ = rand() % 255;
         g_ = rand() % 255;
         b_ = rand() % 255;
 
-        if (r_ < 150 && g_ < 150 && b_ < 150)
+        /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
             int c = rand() % 3;
             switch (c)
@@ -94,7 +95,21 @@ public:
                 b_ = 200;
                 break;
             }
-        }
+        }*/
+        
+
+        if(r_ > 0 && b_ == 0){
+            r_--;
+            g_++;
+            }
+        if(g_ > 0 && r_ == 0){
+            g_--;
+            b_++;
+            }
+        if(b_ > 0 && g_ == 0){
+            r_++;
+            b_--;
+             }
     }
 
     ~GameLife()
@@ -205,7 +220,7 @@ private:
                     if (num == 3)
                         newGameState_[x][y] = 1;
                 }
-                if (count == 10)
+                if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
                     newGameState_[x / 2 + 21][y / 2 + 21] = 1;

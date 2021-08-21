@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = rand() % 255;
-        g_ = rand() % 255;
-        b_ = rand() % 255;
+        r_ = 127; //rand() % 255
+        g_ = 127; //rand() % 255
+        b_ = 127; //rand() % 255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -128,7 +128,7 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                     if (GameState_[x][y])
-                        canvas()->SetPixel(x, y, r_-rand()%10, b_-rand()%10, g_-rand()%10); // esto era r_, g_, b_
+                        canvas()->SetPixel(x, y, r_, b_, g_; // esto era r_, g_, b_
                     else
                         canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0
                 }

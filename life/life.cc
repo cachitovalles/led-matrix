@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = 127; //rand() % 255
-        g_ = 10; //rand() % 255
-        b_ = 20; //rand() % 255
+        r_ = 100; //rand() % 255
+        g_ = 100; //rand() % 255
+        b_ = 100; //rand() % 255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -129,9 +129,9 @@ public:
                 {
                    
                     if (GameState_[x][y])
-                        canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_
+                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_
                     else
-                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0
+                        canvas()->SetPixel(x, y, r_, b_, g_); //esto era 0, 0, 0
                   
                 }
             }

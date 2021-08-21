@@ -56,14 +56,26 @@ public:
         height_ = canvas()->height();
         // Allocate memory
         GameState_ = new int *[width_];
+        GameStateB_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
             GameState_[x] = new int[height_];
         }
+        for (int a = 0; a < width_; ++a)///
+        {
+            GameStateB_[a] = new int[height_];///
+        }
+        
         newGameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
             newGameState_[x] = new int[height_];
+        }
+        
+        newGameStateB_ = new int *[width_];///
+        for (int a = 0; a < width_; ++a)
+        {
+            newGameStateB_[a] = new int[height_];///
         }
 
         // Init GameState randomly
@@ -73,6 +85,14 @@ public:
             for (int y = 0; y < height_; ++y)
             {
                 GameState_[x][y] = rand() % 2;
+            }
+        }
+        
+        for (int a = 0; a < width_; ++a) /// Inicia el modelo B
+        {
+            for (int b = 0; b < height_; ++b)
+            {
+                GameStateB_[a][b] = rand() % 4;
             }
         }
         
@@ -109,11 +129,27 @@ public:
             delete[] GameState_[x];
         }
         delete[] GameState_;
+        
+        ///modeloB
+        for (int a = 0; a < width_; ++a)
+        {
+            delete[] GameStateB_[a];
+        }
+        delete[] GameStateB_;///
+        
+        
         for (int x = 0; x < width_; ++x)
         {
             delete[] newGameState_[x];
         }
         delete[] newGameState_;
+        
+        ///modeloB
+        for (int a = 0; a < width_; ++a)
+        {
+            delete[] newGameStateB_[a];
+        }
+        delete[] newGameStateB_;///
     }
 
     void Run() override
@@ -133,6 +169,19 @@ public:
               
                     else
                         canvas()->SetPixel(x, y, 10, 10, 20); //esto era 0, 0, 0 MUERTAS
+                  
+                }
+                
+              for (int a = 0; a < width_; ++a)///
+              {
+                for (int b = 0; b < height_; ++b)///
+                {
+                   
+                    if (GameState_[a][b])///
+                        canvas()->SetPixel(a, b, r_, b_, g_); // esto era r_, g_, b_ VIVAS ////
+              
+                    else
+                        canvas()->SetPixel(a, b, 10, 10, 20); //esto era 0, 0, 0 MUERTAS ///
                   
                 }
             }
@@ -156,7 +205,23 @@ private:
             num += GameState_[x][(y - 1 + height_) % height_];
             num += GameState_[x][(y + 1) % height_];
         }
-        else
+        
+        int numAliveNeighboursB(int a, int b)///
+        {
+            int numb = 0;///
+            if (torus_)///
+            {
+            // Edges are connected (torus)
+            numb += GameStateB_[(a - 1 + width_) % width_][(b - 1 + height_) % height_];///
+            numb += GameStateB_[(a - 1 + width_) % width_][b];///
+            numb += GameStateB_[(a - 1 + width_) % width_][(b + 1) % height_];///
+            numb += GameStateB_[(a + 1) % width_][(b - 1 + height_) % height_];///
+            numb += GameStateB_[(a + 1) % width_][b];///
+            numb += GameStateB_[(a + 1) % width_][(b + 1) % height_];///
+            numb += GameStateB_[a][(b - 1 + height_) % height_]; ///
+            numb += GameStateB_[a][(b + 1) % height_]; ///
+        }
+        /*else
         {
             // Edges are not connected (no torus)
             if (x > 0)
@@ -179,8 +244,9 @@ private:
                 num += GameState_[x][y - 1];
             if (y < height_ - 1)
                 num += GameState_[x][y + 1];
-        }
+        }*/
         return num;
+        return numb; ///
     }
 
     void updateValues()
@@ -192,6 +258,14 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 newGameState_[x][y] = GameState_[x][y];
+            }
+        }
+        
+         for (int a = 0; a < width_; ++a)
+        {
+            for (int b = 0; b < height_; ++b)
+            {
+                newGameStateB_[a][b] = GameStateB_[a][b];
             }
         }
         // update newGameState based on GameState
@@ -223,6 +297,36 @@ private:
                 }
             }
         }
+        
+         // update newGameState based on GameStateB Modelo B
+        for (int a = 0; a < width_; ++a)
+        {
+            for (int b = 0; b < height_; ++b)
+            {
+                int numb = numAliveNeighboursB(a, b);
+                if (GameStateB_[a][b])
+                {
+                    // cell is alive
+                    if (numb < 2 || numb > 3)
+                        newGameStateB_[a][b] = 0;
+                }
+                else
+                {
+                    // cell is dead
+                    if (numb == 3)
+                        newGameStateB_[a][b] = 1;
+                }
+                if (count == 10)  // Nacen cada 10 Iteracciones
+                {
+                    count = 0;
+                    newGameStateB_[a / 2 + 21][b / 2 + 21] = 1;
+                    newGameStateB_[a / 2 + 22][b / 2 + 22] = 1;
+                    newGameStateB_[a / 2 + 22][b / 2 + 23] = 1;
+                    newGameStateB_[a / 2 + 21][b / 2 + 23] = 1;
+                    newGameStateB_[a / 2 + 20][b / 2 + 23] = 1;
+                }
+            }
+        }
         // copy newGameState to GameState
         for (int x = 0; x < width_; ++x)
         {
@@ -232,9 +336,20 @@ private:
             }
         }
     }
+    // copy newGameState to GameState  MODELO B
+        for (int a = 0; a < width_; ++a)
+        {
+            for (int b = 0; b < height_; ++b)
+            {
+                GameStateB_[a][b] = newGameStateB_[a][b];
+            }
+        }
+    }
 
     int **GameState_;
     int **newGameState_;
+    int **GameStateB_;
+    int **newGameStateB_;
     int delay_ms_;
     int r_;
     int g_;

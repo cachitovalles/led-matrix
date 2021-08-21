@@ -133,7 +133,7 @@ public:
                     else
                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
                        
-                    if (GameState_[x+1][y+1])
+                    if (GameState_[x][y])
                        canvas()->SetPixel(x+1, y+1, 250, b_, g_); // esto era r_, g_, b_ VIVAS
 
 

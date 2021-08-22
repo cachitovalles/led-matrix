@@ -138,12 +138,11 @@ public:
                     }
                     if (newGameState_[x][y] == 1)
                     {
-                       float f = newGameState_[x][y];
-                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
+                       canvas()->SetPixel(x, y, r_, b_ , g_ ); //esto era 0, 0, 0 MUERTAS
 
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                       //canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
                      } 
               
 
@@ -226,7 +225,7 @@ private:
                     if (num == 3)
                         newGameState_[x][y] = 1;
                 }
-                if (count == 10)  // Nacen cada 10 Iteracciones
+                if (count == 80)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
                     newGameState_[x / 2 + 21][y / 2 + 21] = 1;
@@ -234,7 +233,7 @@ private:
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
-                    canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                    
                 }
                 
             }

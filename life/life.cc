@@ -147,8 +147,8 @@ public:
               
                     if (newGameState_[x][y] == 2)
                     {
-      
-                       canvas()->SetPixel(x, y, rand()%r_, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
+                       for (int c=rand()%r_; c>=0; c-10;)
+                       canvas()->SetPixel(x, y, c, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
                        
                     }   
 

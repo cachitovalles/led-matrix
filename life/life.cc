@@ -234,10 +234,6 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;
                     newGameState_[x / 2 + 20][y / 2 + 23] += 0.1;
                     }
-                }
-                
-               
-               
                 
                 
             }

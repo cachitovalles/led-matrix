@@ -228,7 +228,13 @@ private:
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x][y] = rand() % 2;
+                    for (int x = 0; x < width_; ++x)
+                    {       
+                         for (int y = 0; y < height_; ++y)
+                         {
+                            newGameState_[x][y] = rand() % 2;
+                          }
+                    }
                 }
                 
                

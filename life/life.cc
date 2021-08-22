@@ -221,13 +221,13 @@ private:
                 
                 if (GameState_[x][y] == 1 && (num > 2 || num < 3)) //Regla 1
                 {
-                        newGameState_[x][y] = 1;
+                        newGameState_[x][y] = 2;
                 }
                 if (GameState_[x][y])
                 {
                     // cell is alive
                     if (num < 2 || num > 3)
-                        newGameState_[x][y] = 2;
+                        newGameState_[x][y] = 1;
                 }
                 else
                 {

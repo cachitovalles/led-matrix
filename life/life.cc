@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = 255; //rand() % 255
-        g_ = 200; //rand() % 255
-        b_ = 255; //rand() % 255
+        r_ = 255/10; //rand() % 255
+        g_ = 200/10; //rand() % 255
+        b_ = 255/10; //rand() % 255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -130,7 +130,7 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (GameState_[x][y] < 0.5)
+                    if (GameState_[x][y] <= 0.5)
                     {
                        
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
@@ -139,8 +139,7 @@ public:
                     {
                        float f = GameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
-                       
-                      
+
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
                        canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS

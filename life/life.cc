@@ -135,7 +135,7 @@ public:
                     }
                     if (GameState_[x][y] >= 0.5)
                     {
-                       for (float f = 1; f < 0; --f)
+                       for (float f = 255; f < 0; --f)
                        {
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
                        }

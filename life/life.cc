@@ -123,7 +123,7 @@ public:
 
             updateValues();
             
-            float f = GameState_[x][y];
+            float f = GameState_[int x][int y];
 
             for (int x = 0; x < width_; ++x)
             {

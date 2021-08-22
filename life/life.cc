@@ -153,7 +153,7 @@ public:
                        canvas()->SetPixel(x, y, rand()%128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
                        
                     }   
-                    if (newGameState_[x][y] == 2)
+                    if (newGameState_[x][y] == 3)
                     {
                        
                        canvas()->SetPixel(x, y, 0, rand()%128, 0); // esto era r_, g_, b_ VIVAS

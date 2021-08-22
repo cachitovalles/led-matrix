@@ -264,7 +264,7 @@ private:
     bool torus_;
 };
 
-//Opciones
+//Opciones Pantallas
 int main(int argc, char *argv[])
 {
 

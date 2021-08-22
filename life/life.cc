@@ -209,7 +209,7 @@ private:
                 {
                         newGameState_[x][y] += 0.1;
                 }
-                if (GameState_[x][y] >= 0.5 && (num <= lowL || num >= higL3.5))
+                if (GameState_[x][y] >= 0.5 && (num <= lowL || num >= higL))
                 {
                         newGameState_[x][y] -= 0.1;
                 }

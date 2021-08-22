@@ -138,8 +138,9 @@ public:
                        for (float f = 255; f < 0; --f)
                        {
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
-                       }
                        canvas()->SetPixel(x+1, y+1, r_ * f, b_ * f, g_ * f); // esto era r_, g_, b_ VIVAS
+                       }
+                       
                        canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
                      } 
               

@@ -132,7 +132,7 @@ public:
                    
                     if (newGameState_[x][y] < 0.5)
                     {
-                       float f = newGameState_[x][y];
+                       
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
                     }
                     if (newGameState_[x][y] > 0.5)

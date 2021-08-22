@@ -207,11 +207,11 @@ private:
                 float num = numAliveNeighbours(x, y);
                 if (GameState_[x][y] <= 0.5 && num == higL)
                 {
-                        newGameState_[x][y] += 0.1;
+                        newGameState_[x][y] += 0.5;
                 }
                 if (GameState_[x][y] >= 0.5 && (num < lowL || num > higL))
                 {
-                        newGameState_[x][y] -= 0.1;
+                        newGameState_[x][y] -= 0.5;
                 }
                 if (count == 50)  // Nacen cada 10 Iteracciones
                 {

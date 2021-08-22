@@ -216,11 +216,11 @@ private:
                 if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
-                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
-                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
-                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
-                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
+                     newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] += 0.1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] += 0.1;
                 }
             }
         }

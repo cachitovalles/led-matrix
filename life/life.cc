@@ -142,7 +142,7 @@ public:
 
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       
                      } 
               
                     if (newGameState_[x][y] == 2)
@@ -151,6 +151,12 @@ public:
                        canvas()->SetPixel(x, y, rand()%128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
                        
                     }   
+                    if (newGameState_[x][y] == 2)
+                    {
+                       
+                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       
+                    }  
 
                 }
             }
@@ -238,7 +244,7 @@ private:
                 
                 if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
                 {
-                        newGameState_[x][y] = 2;
+                        newGameState_[x][y] = 3;
                 }
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {

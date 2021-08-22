@@ -220,7 +220,7 @@ private:
                 }
                 if(GameState_[x][y] == 1 && num == 3) //Regla 2
                 {
-                        newGameState_[x][y] = 0.5 ;
+                        newGameState_[x][y] = 1 ;
                 }
                 
                 if(GameState_[x][y] == 1 && num >= 3) //Regla 3

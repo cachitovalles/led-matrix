@@ -130,7 +130,7 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (newGameState_[x][y] <= 0.2)
+                    if (newGameState_[x][y] <= 0.8)
                     {
                        
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS

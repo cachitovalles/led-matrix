@@ -246,7 +246,7 @@ private:
                 
                 if (GameState_[x][y] == 2 && (num > 2 || num < 3)) //Regla 1
                 {
-                        newGameState_[x][y] = 1;
+                        newGameState_[x][y] = 3;
                 }
                /* if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
                 {

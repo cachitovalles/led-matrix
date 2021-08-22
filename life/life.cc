@@ -202,14 +202,14 @@ private:
         {
             for (int y = 0; y < height_; ++y)
             {
-                float lowL = 1.5;
-                float higL = 4.5;
+                float lowL = 2;
+                float higL = 3;
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] <= 0.5 && num > lowL && num < higL)
+                if (GameState_[x][y] <= 0.5 && num == higL)
                 {
                         newGameState_[x][y] += 0.1;
                 }
-                if (GameState_[x][y] >= 0.5 && (num <= lowL || num >= higL))
+                if (GameState_[x][y] >= 0.5 && (num < lowL || num > higL))
                 {
                         newGameState_[x][y] -= 0.1;
                 }

@@ -135,7 +135,7 @@ public:
                     }
                     else
                     {
-                       float f = min(1, max(0, newGameState_[x][y]));
+                       float f = min(1.0, max(0.0, newGameState_[x][y]));
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
                      } 
                     if (GameState_[x][y])

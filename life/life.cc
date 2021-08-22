@@ -130,7 +130,7 @@ public:
                    
                     if (GameState_[x][y])
                        canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
-                    elif
+                    if
                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
                        
                     if (GameState_[x][y])
@@ -207,7 +207,7 @@ private:
                 {
                         newGameState_[x][y] += 0.1;
                 }
-                if (GameState_[x][y] >= 0.5 && (num <= 2.5 || num >= 3.5)
+                if (GameState_[x][y] >= 0.5 && (num <= 2.5 || num >= 3.5))
                 {
                         newGameState_[x][y] -= 0.1;
                 }

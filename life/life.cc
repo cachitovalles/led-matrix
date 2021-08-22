@@ -249,11 +249,13 @@ private:
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
+                    
+                    int j = rand()%100 
+                    newGameState_[j / 2 + 21][j / 2 + 21] = 1;
+                    newGameState_[j / 2 + 22][j / 2 + 22] = 1;
+                    newGameState_[j / 2 + 22][j / 2 + 23] = 1;
+                    newGameState_[j / 2 + 21][j / 2 + 23] = 1;
+                    newGameState_[j / 2 + 20][j / 2 + 23] = 1;
                 }
                 
             }

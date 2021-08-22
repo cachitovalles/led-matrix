@@ -213,14 +213,14 @@ private:
                 {
                         newGameState_[x][y] -= 0.1;
                 }
-                if (count == 10)  // Nacen cada 10 Iteracciones
+                if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
+                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
+                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
+                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
+                    newGameState_[x / 2 + rand()][y / 2 + rand()] += 0.1;
                 }
             }
         }

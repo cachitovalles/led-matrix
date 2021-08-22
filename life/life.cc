@@ -213,9 +213,9 @@ private:
             {
                 float num = numAliveNeighbours(x, y);
                 
-                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
+                if (GameState_[x][y] == 1 && (num > 2 || num < 3)) //Regla 1
                 {
-                        newGameState_[x][y] += 0.1;
+                        newGameState_[x][y] = 1;
                 }
                 if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
                 {
@@ -229,11 +229,11 @@ private:
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
-                    newGameState_[x / 2 + 22][y / 2 + 22] += 0.1;
-                    newGameState_[x / 2 + 22][y / 2 + 23] += 0.1;
-                    newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;
-                    newGameState_[x / 2 + 20][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                     }
                 
                 

@@ -127,11 +127,11 @@ public:
             {
                 for (int y = 0; y < height_; ++y)
                 {
-                   float f = newGameState_[x][y];
-                    if (GameState_[x][y])
-                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); // esto era r_, g_, b_ VIVAS
+                   float f = min(1,max(0,newGameState_[x][y])) ;
+                    if (GameState_[x][y] < 0.5)
+                       canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
                     else
-                       canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
+                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f)); //esto era 0, 0, 0 MUERTAS
                        
                     if (GameState_[x][y])
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
@@ -205,13 +205,13 @@ private:
                 float lowL = 2;
                 float higL = 3;
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] == 0 && num == higL)
+                if (GameState_[x][y] < 0.5 && num == higL)
                 {
-                        newGameState_[x][y] += 0.5;
+                        newGameState_[x][y] += 0.1;
                 }
-                if (GameState_[x][y] == 1 && (num < lowL || num > higL))
+                if (GameState_[x][y] >= 0.5 && (num < lowL || num > higL))
                 {
-                        newGameState_[x][y] = 0;
+                        newGameState_[x][y] -= 0.1;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {

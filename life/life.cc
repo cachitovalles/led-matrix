@@ -250,13 +250,12 @@ private:
                 {
                     count = 0;
                     
-                    int j = rand() % width_;
-                    int k = rand() % height_; 
-                    newGameState_[j / 2 + 21][k / 2 + 21] = 1;
-                    newGameState_[j / 2 + 22][k / 2 + 22] = 1;
-                    newGameState_[j / 2 + 22][k / 2 + 23] = 1;
-                    newGameState_[j / 2 + 21][k / 2 + 23] = 1;
-                    newGameState_[j / 2 + 20][k / 2 + 23] = 1;
+                    int j = rand() % 32;
+                    newGameState_[x / 2 + j + 21][y / 2 + j + 21] = 1;
+                    newGameState_[x / 2 + j + 22][y / 2 + j + 22] = 1;
+                    newGameState_[x / 2 + j + 22][y / 2 + j + 23] = 1;
+                    newGameState_[x / 2 + j + 21][y / 2 + j + 23] = 1;
+                    newGameState_[x / 2 + j + 20][y / 2 + j + 23] = 1;
                 }
                 
             }

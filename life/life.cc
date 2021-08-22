@@ -205,11 +205,11 @@ private:
                 float lowL = 2;
                 float higL = 3;
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] = 0 && num == higL)
+                if (GameState_[x][y] == 0 && num == higL)
                 {
                         newGameState_[x][y] = 1;
                 }
-                if (GameState_[x][y] = 1 && (num < lowL || num > higL))
+                if (GameState_[x][y] == 1 && (num < lowL || num > higL))
                 {
                         newGameState_[x][y] = 0;
                 }

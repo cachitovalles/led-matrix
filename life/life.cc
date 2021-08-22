@@ -147,7 +147,10 @@ public:
               
                     if (newGameState_[x][y] == 2)
                     {
-                       canvas()->SetPixel(x, y, r_, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
+                        for (int a= 255; a>0; a--)
+                        {
+                       canvas()->SetPixel(x, y, a, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
+                       }
                     }   
 
                 }

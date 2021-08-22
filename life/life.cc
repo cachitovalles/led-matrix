@@ -230,6 +230,11 @@ private:
                 {
                         newGameState_[x][y] = 0;
                 }
+                
+                if(GameState_[x][y] == 2 && num >= 3) //Regla 3
+                {
+                        newGameState_[x][y] = 0;
+                }
                 if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;

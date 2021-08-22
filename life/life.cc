@@ -228,12 +228,11 @@ private:
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    for (int x = 0; x < width_; ++x)
-                    {       
-                         for (int y = 0; y < height_; ++y)
-                         {
-                            newGameState_[x][y] = rand() % 2;
-                          }
+                    newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] += 0.1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] += 0.1;
                     }
                 }
                 

@@ -205,22 +205,22 @@ private:
                 float lowL = 2;
                 float higL = 3;
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] <= 0.5 && num == higL)
+                if (GameState_[x][y] = 0 && num == higL)
                 {
-                        newGameState_[x][y] = 0.5;
+                        newGameState_[x][y] = 1;
                 }
-                if (GameState_[x][y] >= 0.5 && (num < lowL || num > higL))
+                if (GameState_[x][y] = 1 && (num < lowL || num > higL))
                 {
-                        newGameState_[x][y] = 0.5;
+                        newGameState_[x][y] = 0;
                 }
-                if (count == 50)  // Nacen cada 10 Iteracciones
+                if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] = 0.5;
-                    newGameState_[x / 2 + 22][y / 2 + 22] = 0.5;
-                    newGameState_[x / 2 + 22][y / 2 + 23] = 0.5;
-                    newGameState_[x / 2 + 21][y / 2 + 23] = 0.5;
-                    newGameState_[x / 2 + 20][y / 2 + 23] = 0.5;
+                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
             }
         }

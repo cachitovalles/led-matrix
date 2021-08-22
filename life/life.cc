@@ -249,7 +249,7 @@ private:
     int **newGameState_;
     int delay_ms_;
     float r_;
-    floar g_;
+    float g_;
     float b_;
     int width_;
     int height_;

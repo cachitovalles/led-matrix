@@ -207,7 +207,7 @@ private:
                 float num = numAliveNeighbours(x, y);
                 if (GameState_[x][y] == 0 && num == higL)
                 {
-                        newGameState_[x][y] = 0.5;
+                        newGameState_[x][y] += 0.5;
                 }
                 if (GameState_[x][y] == 1 && (num < lowL || num > higL))
                 {

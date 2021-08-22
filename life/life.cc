@@ -132,13 +132,13 @@ public:
                    
                     if (newGameState_[x][y] == 0)
                     {
-                       
-                       canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
+                       float f = newGameState_[x][y];
+                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); // esto era r_, g_, b_ VIVAS
                     }
                     if (newGameState_[x][y] == 1)
                     {
                         float f = newGameState_[x][y];
-                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
+                       canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
 
                        //canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
@@ -219,7 +219,7 @@ private:
                 }
                 if(GameState_[x][y] == 0 && num == 3) //Regla 2
                 {
-                        newGameState_[x][y] = 1 ;
+                        newGameState_[x][y] += 0.3 ;
                 }
                 
                 if(GameState_[x][y] == 1 && num >= 3) //Regla 3

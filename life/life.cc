@@ -134,10 +134,7 @@ public:
                     {
                      
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
-                       for (int i=0; i<200; i++)
-                       {
-                       canvas()->SetPixel(x-2, y-2, 250, 0, 0); // esto era r_, g_, b_ VIVAS
-                       }
+                       
                     }
                     if (newGameState_[x][y] == 1)
                     {

@@ -213,17 +213,18 @@ private:
             {
                 float num = numAliveNeighbours(x, y);
                 
-                if (GameState_[x][y])
+                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {
-                    // cell is alive
-                    if (num < 2 || num > 3)
-                        newGameState_[x][y] -= 0.1;
+                        newGameState_[x][y] += 0.1;
                 }
-                else
+                if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
                 {
-                    // cell is dead
-                    if (num == 3)
-                        newGameState_[x][y] += 1;
+                        newGameState_[x][y] += 0.1 ;
+                }
+                
+                if(GameState_[x][y] > 0.5 && num >= 3) //Regla 3
+                {
+                        newGameState_[x][y] += 0.1 ;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {

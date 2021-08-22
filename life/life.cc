@@ -136,7 +136,7 @@ public:
                     if (GameState_[x][y])
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                    if (GameState_[x][y] == 0)
+                    if (GameState_[x][y])
                        canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
 
 

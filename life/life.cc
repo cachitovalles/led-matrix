@@ -237,6 +237,7 @@ private:
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
+                    canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                 }
                 
             }

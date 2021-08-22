@@ -150,13 +150,13 @@ public:
                     if (newGameState_[x][y] == 2)
                     {
                        
-                       canvas()->SetPixel(x, y, rand()%128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
+                       canvas()->SetPixel(x, y, 128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
                        
                     }   
                     if (newGameState_[x][y] == 3)
                     {
                        
-                       canvas()->SetPixel(x, y, 0, rand()%128, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x, y, 0, 128, 0); // esto era r_, g_, b_ VIVAS
                        
                     }  
 
@@ -244,7 +244,7 @@ private:
                         newGameState_[x][y] = 1;
                 }
                 
-                if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
+               /* if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
                 {
                         newGameState_[x][y] = 3;
                 }
@@ -253,13 +253,13 @@ private:
                 {
                         newGameState_[x][y] = 3;
                 }
-               
+               */
                 
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
                     
-                    int j = rand() % 32;
+                  
                     newGameState_[x / 2 + 21][y / 2 + 21] = 1;
                     newGameState_[x / 2 + 22][y / 2 + 22] = 1;
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;

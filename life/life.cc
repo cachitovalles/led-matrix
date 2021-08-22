@@ -130,14 +130,14 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (GameState_[x][y] < 0.5)
+                    if (newGameState_[x][y] < 0.5)
                     {
-                       float f = GameState_[x][y];
+                       float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
                     }
-                    if (GameState_[x][y] > 0.5)
+                    if (newGameState_[x][y] > 0.5)
                     {
-                        float f = GameState_[x][y];
+                        float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, 150 * f, 150 * f, 150 * f); //esto era 0, 0, 0 MUERTAS
 
                        //canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS

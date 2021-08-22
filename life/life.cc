@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = 10; //rand() % 255
-        g_ = 10; //rand() % 255
-        b_ = 250; //rand() % 255
+        r_ = 255; //rand() % 255
+        g_ = 255; //rand() % 255
+        b_ = 255; //rand() % 255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -134,7 +134,7 @@ public:
                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
                        
                     if (GameState_[x][y])
-                       canvas()->SetPixel(x+1, y+1, 250, b_, g_); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
 
 
                 }

@@ -138,7 +138,7 @@ public:
                     }
                     if (newGameState_[x][y] == 1)
                     {
-                       canvas()->SetPixel(x, y, r_, b_ , g_ ); //esto era 0, 0, 0 MUERTAS
+                       canvas()->SetPixel(x, y, rand()%r_, rand()%b_ , rand()%g_ ); //esto era 0, 0, 0 MUERTAS
 
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
@@ -154,7 +154,7 @@ public:
                     if (newGameState_[x][y] == 2)
                     {
                        
-                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+2, y+2, 0, rand()%128, 0); // esto era r_, g_, b_ VIVAS
                        
                     }  
 

@@ -133,7 +133,7 @@ public:
                        
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
                     }
-                    else
+                    if (GameState_[x][y] >= 0.5)
                     {
                        float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS

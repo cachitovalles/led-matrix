@@ -205,7 +205,7 @@ private:
                 float lowL = 1.5;
                 float higL = 4.5;
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] < 0.5 && num > lowL && num < higL)
+                if (GameState_[x][y] <= 0.5 && num > lowL && num < higL)
                 {
                         newGameState_[x][y] += 0.1;
                 }
@@ -216,7 +216,7 @@ private:
                 if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                     newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
+                    newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
                     newGameState_[x / 2 + 22][y / 2 + 22] += 0.1;
                     newGameState_[x / 2 + 22][y / 2 + 23] += 0.1;
                     newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;

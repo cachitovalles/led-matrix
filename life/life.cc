@@ -127,7 +127,7 @@ public:
             {
                 for (int y = 0; y < height_; ++y)
                 {
-                   float f = min(1,max(0,newGameState_[x][y]));
+                   float f = newGameState_[x][y];
                     if (GameState_[x][y] < 0.5)
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
                     else
@@ -222,6 +222,7 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
+                newGameState_[x][y] = min(1,max(0,newGameState_[x][y]));
             }
         }
         // copy newGameState to GameState

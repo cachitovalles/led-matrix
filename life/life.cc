@@ -214,29 +214,29 @@ private:
             {
                 float num = numAliveNeighbours(x, y);
                 
-                if (GameState_[x][y] == 1 && (num > 2 || num < 3)) //Regla 1
+                if (GameState_[x][y])
                 {
-                        newGameState_[x][y] = 1;
+                    // cell is alive
+                    if (numb < 2 || numb > 3)
+                        newGameStateB_[x][y] = 0;
+                        
                 }
-                if(GameState_[x][y] == 0 && num == 3) //Regla 2
+                else
                 {
-                        newGameState_[x][y] = 1 ;
+                    // cell is dead
+                    if (numb == 3)
+                        newGameStateB_[x][y] = 1;
+                        
                 }
-                
-                if(GameState_[x][y] == 1 && num >= 3) //Regla 3
-                {
-                        newGameState_[x][y] = 0 ;
-                }
-                if (count == 20)  // Nacen cada 10 Iteracciones
+                if (count == 15)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
-                    }
-                
+                    newGameStateB_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameStateB_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameStateB_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameStateB_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameStateB_[x / 2 + 20][y / 2 + 23] = 1;
+                }
                 
             }
         }

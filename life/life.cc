@@ -245,8 +245,8 @@ private:
         }
     }
 
-    float **GameState_;
-    float **newGameState_;
+    int **GameState_;
+    int **newGameState_;
     int delay_ms_;
     float r_;
     floar g_;

@@ -134,7 +134,7 @@ public:
                     {
                        float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
-                       canvas()->SetPixel(x-2, y-2, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                       //canvas()->SetPixel(x-2, y-2, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                     }
                     if (newGameState_[x][y] == 1)
                     {

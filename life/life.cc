@@ -223,7 +223,7 @@ private:
                 {
                     // cell is dead
                     if (num == 3)
-                        newGameState_[x][y] += 0.5;
+                        newGameState_[x][y] = 1;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {

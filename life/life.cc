@@ -127,9 +127,9 @@ public:
             {
                 for (int y = 0; y < height_; ++y)
                 {
-                   
+                   f = newGameState_[x][y];
                     if (GameState_[x][y])
-                       canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); // esto era r_, g_, b_ VIVAS
                     else
                        canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
                        

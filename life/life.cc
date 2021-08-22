@@ -140,9 +140,9 @@ public:
                         float f = GameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
 
-                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                       //canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       //canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
                      } 
               
 

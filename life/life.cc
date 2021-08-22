@@ -217,25 +217,23 @@ private:
                 if (GameState_[x][y])
                 {
                     // cell is alive
-                    if (numb < 2 || numb > 3)
-                        newGameStateB_[x][y] = 0;
-                        
+                    if (num < 2 || num > 3)
+                        newGameState_[x][y] = 0;
                 }
                 else
                 {
                     // cell is dead
-                    if (numb == 3)
-                        newGameStateB_[x][y] = 1;
-                        
+                    if (num == 3)
+                        newGameState_[x][y] = 1;
                 }
-                if (count == 15)  // Nacen cada 10 Iteracciones
+                if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameStateB_[x / 2 + 21][y / 2 + 21] = 1;
-                    newGameStateB_[x / 2 + 22][y / 2 + 22] = 1;
-                    newGameStateB_[x / 2 + 22][y / 2 + 23] = 1;
-                    newGameStateB_[x / 2 + 21][y / 2 + 23] = 1;
-                    newGameStateB_[x / 2 + 20][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
                 
             }

@@ -213,13 +213,13 @@ private:
                 {
                     // cell is alive
                     if (num < 2 || num > 3)
-                        newGameState_[x][y] -= 0.1;
+                        newGameState_[x][y] -= 0.3;
                 }
                 else
                 {
                     // cell is dead
                     if (num == 3)
-                        newGameState_[x][y] += 0.1;
+                        newGameState_[x][y] += 0.3;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
@@ -245,8 +245,8 @@ private:
         }
     }
 
-    int **GameState_;
-    int **newGameState_;
+    float **GameState_;
+    float **newGameState_;
     int delay_ms_;
     float r_;
     float g_;

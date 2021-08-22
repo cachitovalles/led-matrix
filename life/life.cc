@@ -262,9 +262,9 @@ private:
     float **GameState_;
     float **newGameState_;
     int delay_ms_;
-    float r_;
-    float g_;
-    float b_;
+    int r_;
+    int g_;
+    int b_;
     int width_;
     int height_;
     bool torus_;

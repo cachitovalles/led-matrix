@@ -212,7 +212,7 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] > 0 && (num < 2 || num > 3)) //Regla 1
+                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {
                         newGameState_[x][y] += 0.1;
                 }

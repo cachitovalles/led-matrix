@@ -123,7 +123,7 @@ public:
 
             updateValues();
             
-            float f = GameState_[int x][int y];
+            
 
             for (int x = 0; x < width_; ++x)
             {
@@ -137,7 +137,7 @@ public:
                     }
                     if (GameState_[x][y] >= 0.5)
                     {
-                     
+                       float f = GameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
                        
                       

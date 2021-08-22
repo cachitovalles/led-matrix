@@ -217,7 +217,7 @@ private:
                 {
                     // cell is alive
                     if (num < 2 || num > 3)
-                        newGameState_[x][y] -= 0.5;
+                        newGameState_[x][y] = 0;
                 }
                 else
                 {

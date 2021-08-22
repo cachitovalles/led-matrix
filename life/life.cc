@@ -203,15 +203,13 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] < 0.5 || num > 2.5 || num < 3.5)
+                if (GameState_[x][y] < 0.5 && num > 2.5 && num < 3.5)
                 {
                         newGameState_[x][y] += 0.1;
                 }
-                else
+                if (GameState_[x][y] >= 0.5 && (num <= 2.5 || num >= 3.5)
                 {
-                    // cell is dead
-                    if (num == 3)
-                        newGameState_[x][y] = 1;
+                        newGameState_[x][y] -= 0.1;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {

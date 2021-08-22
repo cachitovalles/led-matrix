@@ -227,6 +227,17 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
+                if (GameState_[x][y] == 1.0)
+                { 
+                for (int x = 0; x < width_; ++x)
+                {
+                    for (int y = 0; y < height_; ++y)
+                    {
+                    newGameState_[x][y] -= 0.1;
+                    }
+                }
+                
+                
             }
         }
         // copy newGameState to GameState

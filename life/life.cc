@@ -147,9 +147,9 @@ public:
     }
 
 private:
-    int numAliveNeighbours(int x, int y)
+    float numAliveNeighbours(int x, int y)
     {
-        int num = 0;
+        float num = 0;
         if (torus_)
         {
             // Edges are connected (torus)
@@ -205,7 +205,7 @@ private:
         {
             for (int y = 0; y < height_; ++y)
             {
-                int num = numAliveNeighbours(x, y);
+                float num = numAliveNeighbours(x, y);
                 if (GameState_[x][y])
                 {
                     // cell is alive
@@ -233,7 +233,7 @@ private:
                 {
                     for (int y = 0; y < height_; ++y)
                     {
-                    newGameState_[x][y] -= 0.1;
+                    
                     }
                 }
                 

@@ -128,15 +128,16 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (GameState_[x][y] < 0.5)
-                       canvas()->SetPixel(x, y, 127, 120, 127); // esto era r_, g_, b_ VIVAS
+                    if (GameState_[x][y])
+                       canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
                     else
-                    {
-                       float f = newGameState_[x][y];
-                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
-                     }  
+                       canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
+                       
                     if (GameState_[x][y])
                        canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                       
+                    if (GameState_[x][y] == 0)
+                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
 
 
                 }
@@ -146,9 +147,9 @@ public:
     }
 
 private:
-    float numAliveNeighbours(int x, int y)
+    int numAliveNeighbours(int x, int y)
     {
-        float num = 0.0;
+        int num = 0;
         if (torus_)
         {
             // Edges are connected (torus)
@@ -199,21 +200,23 @@ private:
                 newGameState_[x][y] = GameState_[x][y];
             }
         }
-        // update newGameState based on GameState  REGLAS
+        // update newGameState based on GameState
         for (int x = 0; x < width_; ++x)
         {
             for (int y = 0; y < height_; ++y)
             {
-                float lowL = 2;
-                float higL = 3;
-                float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] < 0.5 && num == higL)
+                int num = numAliveNeighbours(x, y);
+                if (GameState_[x][y])
                 {
-                        newGameState_[x][y] += 0.1;
+                    // cell is alive
+                    if (num < 2 || num > 3)
+                        newGameState_[x][y] = 0;
                 }
-                if (GameState_[x][y] >= 0.5 && (num < lowL || num > higL))
+                else
                 {
-                        newGameState_[x][y] -= 0.1;
+                    // cell is dead
+                    if (num == 3)
+                        newGameState_[x][y] = 1;
                 }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
@@ -224,7 +227,6 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
-                newGameState_[x][y] = min(1,max(0,newGameState_[x][y]));
             }
         }
         // copy newGameState to GameState

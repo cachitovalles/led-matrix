@@ -238,7 +238,7 @@ private:
                 
                 if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
                 {
-                        newGameState_[x][y] = 0;
+                        newGameState_[x][y] = 2;
                 }
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {

@@ -150,7 +150,7 @@ public:
                        for (int c=rand()%r_; c>=0; --c)
                        {
                        canvas()->SetPixel(x, y, c, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
-                       usleep(5 * 1000);
+                       usleep(50);
                        }
                     }   
 

@@ -197,17 +197,19 @@ private:
                 newGameState_[x][y] = GameState_[x][y];
             }
         }
-        // update newGameState based on GameState
+        // update newGameState based on GameState  REGLAS
         for (int x = 0; x < width_; ++x)
         {
             for (int y = 0; y < height_; ++y)
             {
+                float lowL = 1.5;
+                float higL = 4.5;
                 float num = numAliveNeighbours(x, y);
-                if (GameState_[x][y] < 0.5 && num > 2.5 && num < 3.5)
+                if (GameState_[x][y] < 0.5 && num > lowL && num < higL)
                 {
                         newGameState_[x][y] += 0.1;
                 }
-                if (GameState_[x][y] >= 0.5 && (num <= 2.5 || num >= 3.5))
+                if (GameState_[x][y] >= 0.5 && (num <= lowL || num >= higL3.5))
                 {
                         newGameState_[x][y] -= 0.1;
                 }

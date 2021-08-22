@@ -246,16 +246,21 @@ private:
                 {
                         newGameState_[x][y] = 3;
                 }
+                
+                 if (GameState_[x][y] == 1 && (num == 3)) //Regla 1
+                {
+                        newGameState_[x][y] = 2;
+                }
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
                     
                     int j = rand() % 32;
-                    newGameState_[x / 2 + j + 21][y / 2 + j + 21] = 1;
-                    newGameState_[x / 2 + j + 22][y / 2 + j + 22] = 1;
-                    newGameState_[x / 2 + j + 22][y / 2 + j + 23] = 1;
-                    newGameState_[x / 2 + j + 21][y / 2 + j + 23] = 1;
-                    newGameState_[x / 2 + j + 20][y / 2 + j + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
                 
             }

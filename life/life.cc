@@ -212,8 +212,25 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 float num = numAliveNeighbours(x, y);
+                
+                
+                
+                 if (GameState_[x][y] > 0.5)
+                {
+                    // cell is alive
+                    if (num < 2 || num > 3)
+                        newGameState_[x][y] += 0.1;
+                }
+                else
+                {
+                    // cell is dead
+                    if (num == 3)
+                        newGameState_[x][y] += 0.1;
+                }
+                
+                
                  
-                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
+                /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {
                         newGameState_[x][y] += 0.1;
                 }
@@ -225,7 +242,8 @@ private:
                 if(GameState_[x][y] > 0.5 && num >= 3) //Regla 3
                 {
                         newGameState_[x][y] -= 0.1 ;
-                }
+                }*/
+                
                 if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
@@ -270,7 +288,7 @@ int main(int argc, char *argv[])
 
     // These are the defaults when no command-line flags are given.
     matrix_options.rows = 16;
-    matrix_options.chain_length = 3;
+    matrix_options.chain_length = 8;
     matrix_options.parallel = 1;
     matrix_options.pixel_mapper_config = "V-mapper";
     

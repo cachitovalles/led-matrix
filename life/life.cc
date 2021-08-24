@@ -49,21 +49,21 @@ class GameLife : public Life
 {
     int count = 0;  //Contador
 public:
-    GameLife(Canvas *m, int delay_ms = 50, bool torus = true)  //opciones   delay_ms era 1000
+    GameLife(Canvas *m, int delay_ms = 1000, bool torus = true)  //opciones   delay_ms era 1000
         : Life(m), delay_ms_(delay_ms), torus_(torus)
     {
         width_ = canvas()->width();
         height_ = canvas()->height();
         // Allocate memory
-        GameState_ = new float *[width_];
+        GameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
-            GameState_[x] = new float[height_];
+            GameState_[x] = new int[height_];
         }
-        newGameState_ = new float *[width_];
+        newGameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
-            newGameState_[x] = new float[height_];
+            newGameState_[x] = new int[height_];
         }
 
         // Init GameState randomly
@@ -122,54 +122,31 @@ public:
         {
 
             updateValues();
-            
-            
 
             for (int x = 0; x < width_; ++x)
             {
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (newGameState_[x][y] == 0)
-                    {
-                     
-                       canvas()->SetPixel(x, y, 0, 0, 0); // esto era r_, g_, b_ VIVAS
+                    if (GameState_[x][y])
+                       canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
+                    else
+                       canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
                        
-                    }
-                    if (newGameState_[x][y] == 1)
-                    {
-                       for (float f = 1; f>0; f=f-0.1)
-                       {
-                       canvas()->SetPixel(x, y, r_*f, b_*f, g_*f ); //esto era 0, 0, 0 MUERTAS
-                       canvas()->SetPixel(x+1, y+1, 250*f, 0*f, 0*f); // esto era r_, g_, b_ VIVAS
-                       usleep(10); // ms
-                       }
-                       
-                     } 
-              
-                    if (newGameState_[x][y] == 2)
-                    {
-                       
-                       canvas()->SetPixel(x, y, 128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
-                       
-                    }   
-                    if (newGameState_[x][y] == 3)
-                    {
-                       
-                       canvas()->SetPixel(x, y, 0, 128, 0); // esto era r_, g_, b_ VIVAS
-                       
-                    }  
+                    if (GameState_[x][y])
+                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+
 
                 }
             }
-            usleep(50); // usleep(delay_ms_ * 1000);
+            usleep(delay_ms_ * 1000); // ms
         }
     }
 
 private:
-    float numAliveNeighbours(int x, int y)
+    int numAliveNeighbours(int x, int y)
     {
-        float num = 0;
+        int num = 0;
         if (torus_)
         {
             // Edges are connected (torus)
@@ -225,12 +202,7 @@ private:
         {
             for (int y = 0; y < height_; ++y)
             {
-                float num = numAliveNeighbours(x, y);
-                
-                if (GameState_[x][y] == 1 && (num > 2 || num < 3)) //Regla 1
-                {
-                        newGameState_[x][y] = 2;
-                }
+                int num = numAliveNeighbours(x, y);
                 if (GameState_[x][y])
                 {
                     // cell is alive
@@ -243,34 +215,15 @@ private:
                     if (num == 3)
                         newGameState_[x][y] = 1;
                 }
-                
-                if (GameState_[x][y] == 2 && (num > 2 || num < 3)) //Regla 1
-                {
-                        newGameState_[x][y] = 3;
-                }
-               /* if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
-                {
-                        newGameState_[x][y] = 3;
-                }
-                
-                 if (GameState_[x][y] == 1 && (num > 3)) //Regla 1
-                {
-                        newGameState_[x][y] = 3;
-                }
-               */
-                
-                if (count == 20)  // Nacen cada 10 Iteracciones
+                if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    
-                  
                     newGameState_[x / 2 + 21][y / 2 + 21] = 1;
                     newGameState_[x / 2 + 22][y / 2 + 22] = 1;
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
-                
             }
         }
         // copy newGameState to GameState
@@ -283,8 +236,8 @@ private:
         }
     }
 
-    float **GameState_;
-    float **newGameState_;
+    int **GameState_;
+    int **newGameState_;
     int delay_ms_;
     int r_;
     int g_;
@@ -294,18 +247,18 @@ private:
     bool torus_;
 };
 
-//Opciones Pantallas
+//Opciones
 int main(int argc, char *argv[])
 {
 
-    int scroll_ms = 5;
+    int scroll_ms = 90;
 
     RGBMatrix::Options matrix_options;
     rgb_matrix::RuntimeOptions runtime_opt;
 
     // These are the defaults when no command-line flags are given.
     matrix_options.rows = 16;
-    matrix_options.chain_length = 8;
+    matrix_options.chain_length = 3;
     matrix_options.parallel = 1;
     matrix_options.pixel_mapper_config = "V-mapper";
     

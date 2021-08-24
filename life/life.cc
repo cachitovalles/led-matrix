@@ -55,15 +55,15 @@ public:
         width_ = canvas()->width();
         height_ = canvas()->height();
         // Allocate memory
-        GameState_ = new float *[width_];
+        GameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
-            GameState_[x] = new float[height_];
+            GameState_[x] = new int[height_];
         }
-        newGameState_ = new float *[width_];
+        newGameState_ = new int *[width_];
         for (int x = 0; x < width_; ++x)
         {
-            newGameState_[x] = new float[height_];
+            newGameState_[x] = new int[height_];
         }
 
         // Init GameState randomly
@@ -251,8 +251,8 @@ private:
         }
     }
 
-    float **GameState_;
-    float **newGameState_;
+    int **GameState_;
+    int **newGameState_;
     int delay_ms_;
     int r_;
     int g_;

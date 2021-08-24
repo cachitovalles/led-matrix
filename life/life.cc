@@ -209,7 +209,7 @@ private:
                     for (float i=0; i<1; i=i+0.1)
                     {
                      newGameState_[x][y] = 1*i;
-                     usleep(10);
+                     usleep(5);
                      }
                 }
                 
@@ -218,7 +218,7 @@ private:
                     for (float i=0; i<1; i=i+0.1)
                     {
                      newGameState_[x][y] = 1*i;
-                     usleep(10);
+                     usleep(5);
                      }
                 }
                
@@ -227,7 +227,7 @@ private:
                     for (float i=1; i<0; i=i-0.1)
                     {
                      newGameState_[x][y] = 1*i;
-                     usleep(10);
+                     usleep(5);
                      }
                 }
                
@@ -253,8 +253,8 @@ private:
         }
     }
 
-    int **GameState_;
-    int **newGameState_;
+    float **GameState_;
+    float **newGameState_;
     int delay_ms_;
     int r_;
     int g_;
@@ -268,7 +268,7 @@ private:
 int main(int argc, char *argv[])
 {
 
-    int scroll_ms = 90;
+    int scroll_ms = 30;
 
     RGBMatrix::Options matrix_options;
     rgb_matrix::RuntimeOptions runtime_opt;

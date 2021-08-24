@@ -305,7 +305,7 @@ int main(int argc, char *argv[])
 
     // These are the defaults when no command-line flags are given.
     matrix_options.rows = 16;
-    matrix_options.chain_length = 3;
+    matrix_options.chain_length = 8;
     matrix_options.parallel = 1;
     matrix_options.pixel_mapper_config = "V-mapper";
     

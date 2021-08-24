@@ -49,7 +49,7 @@ class GameLife : public Life
 {
     int count = 0;  //Contador
 public:
-    GameLife(Canvas *m, int delay_ms = 1000, bool torus = true)  //opciones   delay_ms era 1000
+    GameLife(Canvas *m, int delay_ms = 50, bool torus = true)  //opciones   delay_ms era 1000
         : Life(m), delay_ms_(delay_ms), torus_(torus)
     {
         width_ = canvas()->width();
@@ -142,7 +142,7 @@ public:
                        {
                        canvas()->SetPixel(x, y, r_*f, b_*f, g_*f ); //esto era 0, 0, 0 MUERTAS
                        canvas()->SetPixel(x+1, y+1, 250*f, 0*f, 0*f); // esto era r_, g_, b_ VIVAS
-                       usleep(50); // ms
+                       usleep(10); // ms
                        }
                        
                      } 

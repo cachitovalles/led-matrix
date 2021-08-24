@@ -203,18 +203,35 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 int num = numAliveNeighbours(x, y);
-                if (GameState_[x][y])
+              
+                if (GameState_[x][y]==1 && (num < 2 || num > 3))
                 {
-                    // cell is alive
-                    if (num < 2 || num > 3)
-                        newGameState_[x][y] = 0;
+                    for (float i=0; i<1; i=i+0.1)
+                    {
+                     newGameState_[x][y] = 1*i;
+                     usleep(10);
+                     }
                 }
-                else
+                
+                if (GameState_[x][y]==0 && (num == 3))
                 {
-                    // cell is dead
-                    if (num == 3)
-                        newGameState_[x][y] = 1;
+                    for (float i=0; i<1; i=i+0.1)
+                    {
+                     newGameState_[x][y] = 1*i;
+                     usleep(10);
+                     }
                 }
+               
+               if (GameState_[x][y]==1 && (num > 3))
+                {
+                    for (float i=1; i<0; i=i-0.1)
+                    {
+                     newGameState_[x][y] = 1*i;
+                     usleep(10);
+                     }
+                }
+               
+               
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;

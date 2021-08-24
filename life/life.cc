@@ -228,7 +228,10 @@ private:
                         newGameState_[x][y] += 0.1;
                 }
                 
-                
+                 if(GameState_[x][y] > 0.5 && num > 3) //Regla 3
+                {
+                        newGameState_[x][y] -= 0.1 ;
+                }
                  
                 /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {

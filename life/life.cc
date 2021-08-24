@@ -215,7 +215,7 @@ private:
                 {
                     for (float i=0; i<1; i=i+0.1)
                     {
-                     newGameState_[x][y] = 1*i;
+                     newGameState_[x][y] = 0*i;
                      usleep(5);
                      }
                 }

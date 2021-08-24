@@ -138,12 +138,12 @@ public:
                     }
                     if (newGameState_[x][y] == 1)
                     {
-                       
-                       canvas()->SetPixel(x, y, r_, b_, g_ ); //esto era 0, 0, 0 MUERTAS
-                       
-
-                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
-                       
+                       for (float f = 1; f>0; f=f-0.1)
+                       {
+                       canvas()->SetPixel(x, y, r_*f, b_*f, g_*f ); //esto era 0, 0, 0 MUERTAS
+                       canvas()->SetPixel(x+1, y+1, 250*f, 0*f, 0*f); // esto era r_, g_, b_ VIVAS
+                       usleep(50); // ms
+                       }
                        
                      } 
               

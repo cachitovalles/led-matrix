@@ -55,15 +55,15 @@ public:
         width_ = canvas()->width();
         height_ = canvas()->height();
         // Allocate memory
-        GameState_ = new int *[width_];
+        GameState_ = new float *[width_];
         for (int x = 0; x < width_; ++x)
         {
-            GameState_[x] = new int[height_];
+            GameState_[x] = new float[height_];
         }
-        newGameState_ = new int *[width_];
+        newGameState_ = new float *[width_];
         for (int x = 0; x < width_; ++x)
         {
-            newGameState_[x] = new int[height_];
+            newGameState_[x] = new float[height_];
         }
 
         // Init GameState randomly
@@ -122,20 +122,29 @@ public:
         {
 
             updateValues();
+            
+            
 
             for (int x = 0; x < width_; ++x)
             {
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (GameState_[x][y])
-                       canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS
-                    else
-                       canvas()->SetPixel(x, y, 0, 0, 0); //esto era 0, 0, 0 MUERTAS
-                       
-                    if (GameState_[x][y])
-                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                    if (GameState_[x][y] < 0.5)
+                    {
+                       float f = GameState_[x][y];
+                       canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
+                    }
+                    if (GameState_[x][y] > 0.5)
+                    {
+                        float f = GameState_[x][y];
+                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
 
+                       //canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                       
+                       //canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                     } 
+              
 
                 }
             }
@@ -144,9 +153,9 @@ public:
     }
 
 private:
-    int numAliveNeighbours(int x, int y)
+    float numAliveNeighbours(int x, int y)
     {
-        int num = 0;
+        float num = 0;
         if (torus_)
         {
             // Edges are connected (torus)
@@ -202,43 +211,31 @@ private:
         {
             for (int y = 0; y < height_; ++y)
             {
-                int num = numAliveNeighbours(x, y);
-              
-                if (GameState_[x][y]==1 && (num < 2 || num > 3))
+                float num = numAliveNeighbours(x, y);
+                 
+                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {
-                   
-                     newGameState_[x][y] = 1;
-                   
+                        newGameState_[x][y] += 0.1;
+                }
+                if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
+                {
+                        newGameState_[x][y] += 0.1 ;
                 }
                 
-                if (GameState_[x][y]==0 && (num == 3))
+                if(GameState_[x][y] > 0.5 && num >= 3) //Regla 3
                 {
-                    for (float i=0; i<1; i=i+0.1)
-                    {
-                     newGameState_[x][y] = 0*i;
-                     usleep(5);
-                     }
+                        newGameState_[x][y] -= 0.1 ;
                 }
-               
-               if (GameState_[x][y]==1 && (num > 3))
-                {
-                    for (float i=1; i<0; i=i-0.1)
-                    {
-                     newGameState_[x][y] = 1*i;
-                     usleep(5);
-                     }
-                }
-               
-               
-                if (count == 10)  // Nacen cada 10 Iteracciones
+                if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
-                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] += 0.1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] += 0.1;
                 }
+                
             }
         }
         // copy newGameState to GameState
@@ -251,12 +248,12 @@ private:
         }
     }
 
-    int **GameState_;
-    int **newGameState_;
+    float **GameState_;
+    float **newGameState_;
     int delay_ms_;
-    int r_;
-    int g_;
-    int b_;
+    float r_;
+    float g_;
+    float b_;
     int width_;
     int height_;
     bool torus_;
@@ -266,14 +263,14 @@ private:
 int main(int argc, char *argv[])
 {
 
-    int scroll_ms = 30;
+    int scroll_ms = 90;
 
     RGBMatrix::Options matrix_options;
     rgb_matrix::RuntimeOptions runtime_opt;
 
     // These are the defaults when no command-line flags are given.
     matrix_options.rows = 16;
-    matrix_options.chain_length = 8;
+    matrix_options.chain_length = 3;
     matrix_options.parallel = 1;
     matrix_options.pixel_mapper_config = "V-mapper";
     

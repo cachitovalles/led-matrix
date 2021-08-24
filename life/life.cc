@@ -298,7 +298,7 @@ private:
 int main(int argc, char *argv[])
 {
 
-    int scroll_ms = 90;
+    int scroll_ms = 180;
 
     RGBMatrix::Options matrix_options;
     rgb_matrix::RuntimeOptions runtime_opt;

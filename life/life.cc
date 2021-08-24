@@ -206,11 +206,9 @@ private:
               
                 if (GameState_[x][y]==1 && (num < 2 || num > 3))
                 {
-                    for (float i=0; i<1; i=i+0.1)
-                    {
-                     newGameState_[x][y] = 1*i;
-                     usleep(5);
-                     }
+                   
+                     newGameState_[x][y] = 1;
+                   
                 }
                 
                 if (GameState_[x][y]==0 && (num == 3))

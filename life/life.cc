@@ -162,7 +162,7 @@ public:
 
                 }
             }
-            usleep(delay_ms_ * 1000); // ms
+            usleep(50); // usleep(delay_ms_ * 1000);
         }
     }
 

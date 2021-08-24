@@ -49,7 +49,7 @@ class GameLife : public Life
 {
     int count = 0;  //Contador
 public:
-    GameLife(Canvas *m, int delay_ms = 3000, bool torus = true)  //opciones   delay_ms era 1000
+    GameLife(Canvas *m, int delay_ms = 1000, bool torus = true)  //opciones   delay_ms era 1000
         : Life(m), delay_ms_(delay_ms), torus_(torus)
     {
         width_ = canvas()->width();
@@ -298,7 +298,7 @@ private:
 int main(int argc, char *argv[])
 {
 
-    int scroll_ms = 180;
+    int scroll_ms = 250;
 
     RGBMatrix::Options matrix_options;
     rgb_matrix::RuntimeOptions runtime_opt;

@@ -219,22 +219,8 @@ private:
             for (int y = 0; y < height_; ++y)
             {
                 float num = numAliveNeighbours(x, y);
-                
-                
-                
-               /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
-                {
-                        newGameState_[x][y] += 0.1;
-                }*/
-               if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
-                {
-                        newGameState_[x][y] += 0.5 ;
-                }
-                
-               /* if(GameState_[x][y] > 0.5 && num >= 3) //Regla 3
-                {
-                        newGameState_[x][y] -= 0.1 ;
-                }*/
+                  
+               
                 
                 //DESDE AQUI
                 if (GameState_[x][y])
@@ -249,9 +235,14 @@ private:
                     if (num == 3)
                         newGameState_[x][y] = 1;
                 }
+                
+                if (num == 1)
+                {
+                        newGameState_[x][y] = 2;
+                        }
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
-                    count = 0;
+                    
                     newGameState_[x / 2 + 21][y / 2 + 21] = 1;
                     newGameState_[x / 2 + 22][y / 2 + 22] = 1;
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;
@@ -262,7 +253,7 @@ private:
                 
                 
                 
-                if (count == 8)  // Nacen cada 10 Iteracciones
+                if (count == 20)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
                     newGameState_[x / 3 + 11][y / 3 + 11] = 1;

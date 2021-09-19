@@ -235,14 +235,6 @@ private:
                 }
                 
                 //DESDE AQUI
-                 if (GameState_[x][y] == 1 && (num > 2 || num < 3)) //Regla 1
-                {
-                        for (float f = 0; f<1; f=f+0.1)
-                        {
-                        newGameState_[x][y] = 2*f;
-                        
-                        }
-                }
                 if (GameState_[x][y])
                 {
                     // cell is alive
@@ -255,23 +247,15 @@ private:
                     if (num == 3)
                         newGameState_[x][y] = 1;
                 }
-                
-               /* if (GameState_[x][y] == 2 && (num > 2 || num < 3)) //Regla 1
+                if (count == 10)  // Nacen cada 10 Iteracciones
                 {
-                        newGameState_[x][y] = 2;
-                }*/
-               /* if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
-                {
-                        newGameState_[x][y] = 3;
+                    count = 0;
+                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
-                
-                 if (GameState_[x][y] == 1 && (num > 3)) //Regla 1
-                {
-                        newGameState_[x][y] = 3;
-                }
-               */
-                
-                
                 //HASTA AQUI
                 
                 

@@ -238,7 +238,7 @@ private:
                 
           
                         
-                if (count == 10)  // Nacen cada 10 Iteracciones
+                if (count == 30)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
                     newGameState_[x / 2 + 21][y / 2 + 21] = 1;
@@ -253,11 +253,11 @@ private:
                     newGameState_[x / 3 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 3 + 20][y / 2 + 23] = 1;
                     
-                    newGameState_[x / 2 + 61][y / 2 + 21] = 1;
-                    newGameState_[x / 2 + 62][y / 2 + 22] = 1;
-                    newGameState_[x / 2 + 62][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 61][y / 2 + 23] = 1;
-                    newGameState_[x / 2 + 60][y / 2 + 23] = 1;
+                    newGameState_[x / 3 + 61][y / 2 + 21] = 1;
+                    newGameState_[x / 3 + 62][y / 2 + 22] = 1;
+                    newGameState_[x / 3 + 62][y / 2 + 23] = 1;
+                    newGameState_[x / 3 + 61][y / 2 + 23] = 1;
+                    newGameState_[x / 3 + 60][y / 2 + 23] = 1;
                 }
                 //HASTA AQUI
                 

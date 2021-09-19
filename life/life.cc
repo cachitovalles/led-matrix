@@ -130,12 +130,12 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (GameState_[x][y] < 0.5)
+                    if (GameState_[x][y] == 1)
                     {
                        float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
                     }
-                    if (GameState_[x][y] > 0)
+                    if (GameState_[x][y] < 1)
                     {
                         float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
@@ -144,6 +144,11 @@ public:
                        
                        canvas()->SetPixel(x+2, y+2, 0, 25, 0); // esto era r_, g_, b_ VIVAS
                      } 
+                     
+                     if (newGameState_[x][y] == 2)
+                    {
+                       
+                       canvas()->SetPixel(x, y, 128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
               
 
                 }
@@ -274,11 +279,11 @@ private:
                 if (count == 50)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 21][y / 2 + 21] += 0.1;
-                    newGameState_[x / 2 + 22][y / 2 + 22] += 0.1;
-                    newGameState_[x / 2 + 22][y / 2 + 23] += 0.1;
-                    newGameState_[x / 2 + 21][y / 2 + 23] += 0.1;
-                    newGameState_[x / 2 + 20][y / 2 + 23] += 0.1;
+                    newGameState_[x / 2 + 21][y / 2 + 21] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 22] = 1;
+                    newGameState_[x / 2 + 22][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 21][y / 2 + 23] = 1;
+                    newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }
                  
                 /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1

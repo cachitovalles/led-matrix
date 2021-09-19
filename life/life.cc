@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = 245; //rand() % 255 //255
-        g_ = 190; //rand() % 255 //200
-        b_ = 245; //rand() % 255 //255
+        r_ = 255; //rand() % 255 //255
+        g_ = 200; //rand() % 255 //200
+        b_ = 255; //rand() % 255 //255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -130,19 +130,19 @@ public:
                 for (int y = 0; y < height_; ++y)
                 {
                    
-                    if (GameState_[x][y] < 0.5)
+                    if (GameState_[x][y] < 1)
                     {
                        float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
                     }
-                    if (GameState_[x][y] > 0.5)
+                    if (GameState_[x][y] > 0)
                     {
                         float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
 
-                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+1, y+1, 25, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+2, y+2, 0, 25, 0); // esto era r_, g_, b_ VIVAS
                      } 
               
 
@@ -215,7 +215,7 @@ private:
                 
                 
                 
-                 if (GameState_[x][y] > 0.5)
+                 if (GameState_[x][y] > 0)
                 {
                     // cell is alive
                     if (num < 2 || num > 3)
@@ -228,7 +228,7 @@ private:
                         newGameState_[x][y] = 0;
                 }
                 
-                 if(GameState_[x][y] > 0.5 && num > 3) //Regla 3
+                 if(GameState_[x][y] > 1 && num > 3) //Regla 3
                 {
                         newGameState_[x][y] = 0 ;
                 }

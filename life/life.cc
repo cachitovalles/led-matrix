@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = 235; //rand() % 255 //255
-        g_ = 180; //rand() % 255 //200
-        b_ = 235; //rand() % 255 //255
+        r_ = 245; //rand() % 255 //255
+        g_ = 190; //rand() % 255 //200
+        b_ = 245; //rand() % 255 //255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -140,9 +140,9 @@ public:
                         float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
 
-                       //canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+1, y+1, 250, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                       //canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+2, y+2, 0, 250, 0); // esto era r_, g_, b_ VIVAS
                      } 
               
 
@@ -291,7 +291,7 @@ int main(int argc, char *argv[])
 
     // These are the defaults when no command-line flags are given.
     matrix_options.rows = 16;
-    matrix_options.chain_length = 8;
+    matrix_options.chain_length = 10;
     matrix_options.parallel = 1;
     matrix_options.pixel_mapper_config = "V-mapper";
     

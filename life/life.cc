@@ -265,11 +265,11 @@ private:
                 if (count == 8)  // Nacen cada 10 Iteracciones
                 {
                     count = 0;
-                    newGameState_[x / 2 + 121][y / 2 + 121] = 1;
-                    newGameState_[x / 2 + 122][y / 2 + 122] = 1;
-                    newGameState_[x / 2 + 122][y / 2 + 123] = 1;
-                    newGameState_[x / 2 + 121][y / 2 + 123] = 1;
-                    newGameState_[x / 2 + 120][y / 2 + 123] = 1;
+                    newGameState_[x / 3 + 11][y / 3 + 11] = 1;
+                    newGameState_[x / 3 + 12][y / 3 + 12] = 1;
+                    newGameState_[x / 3 + 12][y / 3 + 13] = 1;
+                    newGameState_[x / 3 + 11][y / 3 + 13] = 1;
+                    newGameState_[x / 3 + 10][y / 3 + 13] = 1;
                 }
                  
                 /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1

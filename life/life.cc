@@ -246,6 +246,12 @@ private:
                     newGameState_[x / 2 + 22][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
+                    
+                    newGameState_[x / 3 + 21][y / 3 + 21] = 1;
+                    newGameState_[x / 3 + 22][y / 3 + 22] = 1;
+                    newGameState_[x / 3 + 22][y / 3 + 23] = 1;
+                    newGameState_[x / 3 + 21][y / 3 + 23] = 1;
+                    newGameState_[x / 3 + 20][y / 3 + 23] = 1;
                 }
                 //HASTA AQUI
                 
@@ -261,10 +267,7 @@ private:
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                 }*/
                  
-                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
-                {
-                        newGameState_[x][y] += 0.1;
-                }/*
+                
                 if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
                 {
                         newGameState_[x][y] += 0.1 ;

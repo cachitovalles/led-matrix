@@ -76,9 +76,9 @@ public:
             }
         }
         
-        r_ = 255; //rand() % 255
-        g_ = 200; //rand() % 255
-        b_ = 255; //rand() % 255
+        r_ = 235; //rand() % 255 //255
+        g_ = 180; //rand() % 255 //200
+        b_ = 235; //rand() % 255 //255
 
         /*if (r_ < 150 && g_ < 150 && b_ < 150)
         {
@@ -219,18 +219,18 @@ private:
                 {
                     // cell is alive
                     if (num < 2 || num > 3)
-                        newGameState_[x][y] += 0.1;
+                        newGameState_[x][y] += 0.5;
                 }
                 else
                 {
                     // cell is dead
                     if (num == 3)
-                        newGameState_[x][y] += 0.1;
+                        newGameState_[x][y] += 0.5;
                 }
                 
                  if(GameState_[x][y] > 0.5 && num > 3) //Regla 3
                 {
-                        newGameState_[x][y] -= 0.1 ;
+                        newGameState_[x][y] -= 0.5 ;
                 }
                  
                 /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1

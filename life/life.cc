@@ -256,7 +256,7 @@ private:
                 
                 if (count == 20)  // Nacen cada 10 Iteracciones
                 {
-                    count = 0
+                    count = 0;
                     newGameState_[x / 2 + 11][y / 2 + 11] = 1;
                     newGameState_[x / 2 + 12][y / 2 + 12] = 1;
                     newGameState_[x / 2 + 12][y / 2 + 13] = 1;

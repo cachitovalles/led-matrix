@@ -135,7 +135,7 @@ public:
                        float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
                     }
-                    if (GameState_[x][y] > 0.5)
+                    if (GameState_[x][y] > 0)
                     {
                         float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
@@ -253,7 +253,7 @@ private:
                 
                 if (GameState_[x][y] == 2 && (num > 2 || num < 3)) //Regla 1
                 {
-                        newGameState_[x][y] = 3;
+                        newGameState_[x][y] = 2;
                 }
                /* if (GameState_[x][y] == 2 && (num == 3)) //Regla 1
                 {

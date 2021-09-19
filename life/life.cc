@@ -247,11 +247,11 @@ private:
                     newGameState_[x / 2 + 21][y / 2 + 23] = 1;
                     newGameState_[x / 2 + 20][y / 2 + 23] = 1;
                     
-                    newGameState_[x / 2 + 41][y / 2 + 41] = 1;
-                    newGameState_[x / 2 + 42][y / 2 + 42] = 1;
-                    newGameState_[x / 2 + 42][y / 2 + 43] = 1;
-                    newGameState_[x / 2 + 41][y / 2 + 43] = 1;
-                    newGameState_[x / 2 + 40][y / 2 + 43] = 1;
+                    newGameState_[x / 3 + 41][y / 2 + 21] = 1;
+                    newGameState_[x / 3 + 42][y / 2 + 22] = 1;
+                    newGameState_[x / 3 + 42][y / 2 + 23] = 1;
+                    newGameState_[x / 3 + 41][y / 2 + 23] = 1;
+                    newGameState_[x / 3 + 40][y / 2 + 23] = 1;
                 }
                 //HASTA AQUI
                 

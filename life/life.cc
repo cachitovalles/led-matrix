@@ -236,10 +236,7 @@ private:
                         newGameState_[x][y] = 1;
                 }
                 
-                if (num == 1)
-                {
-                        newGameState_[x][y] = 0;
-                        }
+          
                         
                 if (count == 10)  // Nacen cada 10 Iteracciones
                 {
@@ -264,10 +261,10 @@ private:
                     newGameState_[x / 2 + 10][y / 2 + 13] = 1;
                 }
                  
-                /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
+                if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {
                         newGameState_[x][y] += 0.1;
-                }
+                }/*
                 if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
                 {
                         newGameState_[x][y] += 0.1 ;

@@ -133,16 +133,16 @@ public:
                     if (GameState_[x][y] == 1)
                     {
                        float f = newGameState_[x][y];
-                       canvas()->SetPixel(x, y, r_, b_, g_); // esto era r_, g_, b_ VIVAS//canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); // esto era r_, g_, b_ VIVAS//canvas()->SetPixel(x, y, 1 * f, 1 * f, 1 * f); // esto era r_, g_, b_ VIVAS
                     }
                     if (GameState_[x][y] == 0)
                     {
                         float f = newGameState_[x][y];
                        canvas()->SetPixel(x, y, r_ * f, b_ * f, g_ * f); //esto era 0, 0, 0 MUERTAS
 
-                       canvas()->SetPixel(x+1, y+1, 25, 0, 0); // esto era r_, g_, b_ VIVAS
+                       //canvas()->SetPixel(x+1, y+1, 25, 0, 0); // esto era r_, g_, b_ VIVAS
                        
-                       canvas()->SetPixel(x+2, y+2, 0, 25, 0); // esto era r_, g_, b_ VIVAS
+                       canvas()->SetPixel(x+2, y+2, 0, 128, 0); // esto era r_, g_, b_ VIVAS
                      } 
                      
                      if (newGameState_[x][y] == 2)
@@ -220,11 +220,11 @@ private:
                 
                 
                 
-               if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
+               /*if (GameState_[x][y] > 0.5 && (num > 2 || num < 3)) //Regla 1
                 {
                         newGameState_[x][y] += 0.1;
-                }
-               /* if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
+                }*/
+               if(GameState_[x][y] <= 0.5 && num == 3) //Regla 2
                 {
                         newGameState_[x][y] += 0.1 ;
                 }

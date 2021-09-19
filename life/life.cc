@@ -149,7 +149,7 @@ public:
                     {
                        
                        canvas()->SetPixel(x, y, 128, 0 , 0 ); //esto era 0, 0, 0 MUERTAS
-              
+                    } 
 
                 }
             }
